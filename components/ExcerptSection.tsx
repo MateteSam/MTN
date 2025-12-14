@@ -2,7 +2,11 @@ import React from 'react';
 import { FileText } from 'lucide-react';
 import { EXCERPT_TEXT } from '../constants';
 
-const ExcerptSection: React.FC = () => {
+interface ExcerptSectionProps {
+  onReadExcerpt?: () => void;
+}
+
+const ExcerptSection: React.FC<ExcerptSectionProps> = ({ onReadExcerpt }) => {
   return (
     <section id="excerpt" className="py-24 bg-black relative overflow-hidden">
       {/* Background Graphic */}
@@ -18,8 +22,21 @@ const ExcerptSection: React.FC = () => {
           <div className="glass-panel p-8 md:p-16 rounded-3xl border-t border-white/10 shadow-2xl relative neon-outline">
             <FileText className="absolute top-8 right-8 text-white/5 w-24 h-24 rotate-12" />
             
+            {/* Book-style Chapter Heading */}
+            <div className="text-center mb-12 pb-8 border-b border-white/10">
+              <h3 className="text-2xl md:text-3xl font-display font-bold text-mtn-yellow mb-2 tracking-wide">
+                Chapter 3
+              </h3>
+              <h4 className="text-xl md:text-2xl font-serif font-medium text-white tracking-wide">
+                A Network Is Born
+              </h4>
+              <h5 className="text-lg md:text-xl font-serif text-slate-400 italic mt-1">
+                The Founders
+              </h5>
+            </div>
+            
             <div className="prose prose-invert prose-lg max-w-none font-serif text-slate-300 leading-loose">
-              {EXCERPT_TEXT.split('\n\n').map((paragraph, i) => (
+              {EXCERPT_TEXT.split('\n\n').slice(0, 2).map((paragraph, i) => (
                 <p key={i} className="mb-6 first-letter:text-5xl first-letter:font-bold first-letter:text-mtn-yellow first-letter:float-left first-letter:mr-3 first-letter:mt-[-10px]">
                   {paragraph}
                 </p>
@@ -30,7 +47,7 @@ const ExcerptSection: React.FC = () => {
               <p className="text-xs text-slate-500 uppercase tracking-widest">
                 Excerpt from Chapter 3 • © 2026 Dr. Charles Wirsuiy Snr.
               </p>
-              <button className="text-mtn-yellow hover:text-white transition-colors font-bold text-sm flex items-center gap-2 group neon-outline" onClick={() => window.open('/Excerpt.pdf', '_blank')}>
+              <button className="text-mtn-yellow hover:text-white transition-colors font-bold text-sm flex items-center gap-2 group neon-outline" onClick={onReadExcerpt}>
                 READ FULL EXCERPT <span className="group-hover:translate-x-1 transition-transform">→</span>
               </button>
             </div>
