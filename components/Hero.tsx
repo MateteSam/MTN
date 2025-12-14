@@ -5,15 +5,15 @@ import GlitchText from './GlitchText';
 import { HERO_CONTENT } from '../constants';
 
 const Hero: React.FC = () => {
-  // const [currentSlide, setCurrentSlide] = useState(0);
-  // const slides = ['/mockup1.png', '/mockup2.png', '/banner.png'];
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slides = ['/mockup1.png', '/mockup2.png', '/banner.png'];
 
-  // useEffect(() => {
-  //   const timer = setInterval(() => {
-  //     setCurrentSlide((prev) => (prev + 1) % slides.length);
-  //   }, 5000);
-  //   return () => clearInterval(timer);
-  // }, [slides.length]);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-24 pb-20 overflow-hidden">
@@ -70,7 +70,25 @@ const Hero: React.FC = () => {
           </div>
 
           {/* 3D Book */}
-          <div>Book3D</div>
+          <div className="relative">
+            <Book3D />
+            
+            {/* Slideshow Overlay */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="relative w-full max-w-md mx-auto">
+                {slides.map((slide, index) => (
+                  <img
+                    key={index}
+                    src={slide}
+                    alt={`Slide ${index + 1}`}
+                    className={`absolute inset-0 w-full h-auto object-contain transition-opacity duration-1000 ${
+                      index === currentSlide ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
 
           {/* Preorder CTA - Star of the Show */}
           <div className="text-center space-y-6">
