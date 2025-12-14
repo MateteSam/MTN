@@ -103,17 +103,7 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
                 </div>
               </button>
 
-              {/* Read Excerpt - Tilted Dark Button (same style, different color) */}
-              <button
-                onClick={onReadExcerpt}
-                className="relative overflow-hidden transform skew-x-[-12deg] shadow-lg"
-                aria-label="Read the Excerpt"
-              >
-                <div className="bg-slate-800 px-8 py-4 text-white font-semibold text-base flex items-center gap-3 hover:brightness-110 transition-all duration-200">
-                  <span className="skew-x-[12deg]">READ THE EXCERPT</span>
-                  <ChevronRight className="w-5 h-5 skew-x-[12deg]" />
-                </div>
-              </button>
+              {/* Read Excerpt removed as requested */}
 
               <div className="flex items-center gap-2 text-slate-500 text-xs uppercase tracking-widest">
                 <Wifi className="w-4 h-4" />

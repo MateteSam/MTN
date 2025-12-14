@@ -68,7 +68,7 @@ const AboutSection: React.FC = () => {
 
               <div className="space-y-6 text-slate-300 leading-relaxed max-w-2xl">
                 <h3 className="text-3xl md:text-4xl font-semibold text-white">Dr. Charles Wirsuiy</h3>
-                <div className="inline-block px-4 py-2 bg-mtn-yellow/10 text-mtn-yellow rounded-full text-sm font-bold tracking-widest uppercase">Author</div>
+                <p className="mt-2 text-sm text-mtn-yellow font-medium tracking-wide">Writer · Researcher · Storyteller</p>
                 <p className="mt-6 text-lg">{AUTHOR_BIO.split('\n')[0]}</p>
                 <p className="text-base text-slate-500 italic">Also author of "God Lives in Sandton" and "Microsoft at 50".</p>
                 <div className="flex items-center gap-3 text-base text-slate-400 pt-4">
