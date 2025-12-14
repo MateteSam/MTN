@@ -69,23 +69,81 @@ const Hero: React.FC = () => {
             Official Book Release February 2026
           </div>
 
-          {/* 3D Book */}
-          <div className="relative">
-            <Book3D />
+          {/* Creative Layout: 3D Book + Floating Slideshow Elements */}
+          <div className="relative w-full max-w-6xl mx-auto">
+            {/* Central 3D Book with generous space */}
+            <div className="flex justify-center mb-16">
+              <div className="relative w-96 h-96 flex items-center justify-center">
+                <Book3D />
+              </div>
+            </div>
             
-            {/* Slideshow Overlay */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative w-full max-w-md mx-auto">
-                {slides.map((slide, index) => (
-                  <img
-                    key={index}
-                    src={slide}
-                    alt={`Slide ${index + 1}`}
-                    className={`absolute inset-0 w-full h-auto object-contain transition-opacity duration-1000 ${
-                      index === currentSlide ? 'opacity-100' : 'opacity-0'
-                    }`}
-                  />
-                ))}
+            {/* Floating Slideshow Images - Creative Positioning */}
+            <div className="absolute inset-0 pointer-events-none">
+              {/* Top Left - Mockup1 */}
+              <div className="absolute top-8 left-8 w-32 h-32 transform -rotate-12 opacity-80 hover:opacity-100 transition-opacity duration-500">
+                <img
+                  src="/mockup1.png"
+                  alt="Book Mockup 1"
+                  className={`w-full h-full object-contain transition-all duration-1000 ${
+                    currentSlide === 0 ? 'scale-110 opacity-100' : 'scale-100 opacity-60'
+                  }`}
+                />
+              </div>
+              
+              {/* Top Right - Mockup2 */}
+              <div className="absolute top-12 right-12 w-40 h-40 transform rotate-15 opacity-70 hover:opacity-100 transition-opacity duration-500">
+                <img
+                  src="/mockup2.png"
+                  alt="Book Mockup 2"
+                  className={`w-full h-full object-contain transition-all duration-1000 ${
+                    currentSlide === 1 ? 'scale-110 opacity-100' : 'scale-100 opacity-50'
+                  }`}
+                />
+              </div>
+              
+              {/* Bottom Left - Banner */}
+              <div className="absolute bottom-16 left-16 w-36 h-36 transform -rotate-8 opacity-75 hover:opacity-100 transition-opacity duration-500">
+                <img
+                  src="/banner.png"
+                  alt="Book Banner"
+                  className={`w-full h-full object-contain transition-all duration-1000 ${
+                    currentSlide === 2 ? 'scale-110 opacity-100' : 'scale-100 opacity-55'
+                  }`}
+                />
+              </div>
+              
+              {/* Bottom Right - Secondary Mockup1 */}
+              <div className="absolute bottom-8 right-8 w-28 h-28 transform rotate-22 opacity-65 hover:opacity-100 transition-opacity duration-500">
+                <img
+                  src="/mockup1.png"
+                  alt="Book Mockup 1 Secondary"
+                  className={`w-full h-full object-contain transition-all duration-1000 ${
+                    currentSlide === 0 ? 'scale-105 opacity-90' : 'scale-100 opacity-40'
+                  }`}
+                />
+              </div>
+              
+              {/* Middle Right - Floating Mockup2 */}
+              <div className="absolute top-1/2 right-24 transform -translate-y-1/2 rotate-45 w-24 h-24 opacity-60 hover:opacity-100 transition-opacity duration-500">
+                <img
+                  src="/mockup2.png"
+                  alt="Book Mockup 2 Floating"
+                  className={`w-full h-full object-contain transition-all duration-1000 ${
+                    currentSlide === 1 ? 'scale-105 opacity-85' : 'scale-100 opacity-35'
+                  }`}
+                />
+              </div>
+              
+              {/* Middle Left - Floating Banner */}
+              <div className="absolute top-1/2 left-24 transform -translate-y-1/2 -rotate-30 w-30 h-30 opacity-55 hover:opacity-100 transition-opacity duration-500">
+                <img
+                  src="/banner.png"
+                  alt="Book Banner Floating"
+                  className={`w-full h-full object-contain transition-all duration-1000 ${
+                    currentSlide === 2 ? 'scale-105 opacity-80' : 'scale-100 opacity-30'
+                  }`}
+                />
               </div>
             </div>
           </div>
