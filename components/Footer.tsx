@@ -8,14 +8,8 @@ const Footer: React.FC = () => {
         
         <div className="grid md:grid-cols-3 gap-12 mb-16">
           
-          {/* Brand/Legal */}
-          <div className="space-y-4">
-            <h4 className="text-white font-bold uppercase tracking-wider">300 Million Connections</h4>
-            <p className="text-sm leading-relaxed">
-              An independent work of historical research and nonfiction. 
-              Not commissioned by or affiliated with MTN Group or its subsidiaries.
-            </p>
-          </div>
+          {/* (Brand/Legal removed as requested) */}
+          <div />
 
           {/* Assurance */}
           <div className="space-y-4">
@@ -29,14 +23,10 @@ const Footer: React.FC = () => {
              </div>
           </div>
 
-          {/* Press */}
+          {/* Contact */}
           <div className="space-y-4">
-            <h4 className="text-white font-bold uppercase tracking-wider">Media Enquiries</h4>
-            <p className="text-sm leading-relaxed">
-              For interviews and review copies (available Dec 2025):
-            </p>
-            <a href="mailto:media@godlivesinsandton.store" className="flex items-center gap-2 text-white hover:text-mtn-yellow transition-colors">
-              <Mail className="w-4 h-4" /> media@godlivesinsandton.store
+            <a href="mailto:orders@300millionconnections.store" className="flex items-center gap-2 text-white hover:text-mtn-yellow transition-colors">
+              <Mail className="w-4 h-4" /> orders@300millionconnections.store
             </a>
           </div>
         </div>

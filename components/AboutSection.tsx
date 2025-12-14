@@ -43,15 +43,14 @@ const AboutSection: React.FC = () => {
             </ul>
           </div>
 
-          {/* Quote (MTN Group CEO) */}
+          {/* Quote associated with the excerpt */}
           <div className="mb-12 text-center">
             <Quote className="mx-auto text-mtn-yellow/20 w-16 h-16 hidden md:block" />
-            <h3 className="text-2xl md:text-4xl font-light text-white leading-relaxed italic">
-              {HERO_CONTENT.quote}
-            </h3>
+            <p className="text-mtn-yellow italic text-2xl md:text-3xl font-serif leading-relaxed mt-4">
+              A future not of ideology or law, but of connection.
+            </p>
             <div className="mt-6 flex flex-col items-center">
                <div className="w-12 h-1 bg-mtn-yellow mb-4"></div>
-               <p className="text-slate-400 font-bold tracking-widest uppercase text-sm">{HERO_CONTENT.quoteAuthor}</p>
             </div>
           </div>
 
