@@ -86,11 +86,8 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
               </div>
             </div>
 
-            {/* Text Excerpt (First 2 paragraphs) */}
-            <div className="space-y-6 text-slate-300 leading-relaxed font-serif text-lg md:text-xl border-l-2 border-mtn-yellow/30 pl-6">
-              <p>{HERO_CONTENT.text[0]}</p>
-              <p>{HERO_CONTENT.text[1]}</p>
-            </div>
+            {/* (Excerpt removed as requested) */}
+            <div className="hidden" />
 
             {/* Actions - Tilted CTA Buttons */}
             <div className="flex flex-wrap items-center gap-6 pt-4">
