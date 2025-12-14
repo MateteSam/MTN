@@ -92,14 +92,30 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
               <p>{HERO_CONTENT.text[1]}</p>
             </div>
 
-            {/* Actions */}
+            {/* Actions - Tilted CTA Buttons */}
             <div className="flex flex-wrap items-center gap-6 pt-4">
+              {/* Preorder - Tilted Yellow Button */}
+              <button
+                onClick={(e) => { e.preventDefault(); window.open("/api/payfast/checkout?amount=199&item_name=300%20Million%20Connections", '_blank'); }}
+                className="relative overflow-hidden transform skew-x-[-12deg] shadow-2xl"
+                aria-label="Preorder Now"
+              >
+                <div className="bg-mtn-yellow px-10 py-4 text-black font-bold text-lg flex items-center gap-3 hover:brightness-95 transition-all duration-200">
+                  <span className="skew-x-[12deg]">PREORDER NOW</span>
+                  <ChevronRight className="w-5 h-5 skew-x-[12deg]" />
+                </div>
+              </button>
+
+              {/* Read Excerpt - Tilted Dark Button (same style, different color) */}
               <button
                 onClick={onReadExcerpt}
-                className="group bg-white text-black px-8 py-4 font-bold uppercase tracking-widest text-sm hover:bg-mtn-yellow transition-colors flex items-center gap-2"
+                className="relative overflow-hidden transform skew-x-[-12deg] shadow-lg"
+                aria-label="Read the Excerpt"
               >
-                Read Full Excerpt
-                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <div className="bg-slate-800 px-8 py-4 text-white font-semibold text-base flex items-center gap-3 hover:brightness-110 transition-all duration-200">
+                  <span className="skew-x-[12deg]">READ THE EXCERPT</span>
+                  <ChevronRight className="w-5 h-5 skew-x-[12deg]" />
+                </div>
               </button>
 
               <div className="flex items-center gap-2 text-slate-500 text-xs uppercase tracking-widest">
