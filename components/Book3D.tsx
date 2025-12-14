@@ -1,8 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 const Book3D: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [videoFailed, setVideoFailed] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  const VideoCover: React.FC = () => {
+    return (
+      <>
+        {!videoFailed ? (
+          <video
+            ref={videoRef}
+            src="/3D.mp4"
+            poster="/book cover.png"
+            muted
+            loop
+            playsInline
+            autoPlay
+            className="w-full h-full object-cover"
+            onError={() => setVideoFailed(true)}
+          />
+        ) : (
+          <img src="/book cover.png" alt="300 Million Connections Book Cover" className="w-full h-full object-cover" />
+        )}
+      </>
+    );
+  };
 
   return (
     <div 
@@ -38,16 +62,14 @@ const Book3D: React.FC = () => {
           {/* FRONT FACE (The Cover Image) */}
           <div 
             className="absolute inset-0 bg-[#0a1120] rounded-r-sm shadow-2xl flex flex-col overflow-hidden border-r border-white/10 backface-hidden"
-            style={{ transform: 'translateZ(1px)' }} /* Ensure it sits slightly above to prevent z-fighting */
+            style={{ transform: 'translateZ(1px)' }}
           >
-             <img 
-               src="/book cover.png"
-                alt="300 Million Connections Book Cover" 
-                className="w-full h-full object-cover"
-              />
-              {/* Sheen/Texture Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 pointer-events-none mix-blend-overlay"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent w-8"></div>
+             {/* Try to use a front-cover video at /3D.mp4; fall back to the static cover image if unavailable */}
+             {/** Video element intentionally muted/autoplay/loop to act as a cover texture */}
+             <VideoCover />
+             {/* Sheen/Texture Overlay */}
+             <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 pointer-events-none mix-blend-overlay"></div>
+             <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent w-8"></div>
           </div>
 
           {/* BACK FACE (The Left Inner Page) */}
@@ -65,10 +87,7 @@ const Book3D: React.FC = () => {
              <div className="relative z-10 font-serif">
                 <div className="w-12 h-1 bg-mtn-yellow mb-6"></div>
                 <p className="text-xl md:text-2xl leading-relaxed font-medium text-slate-900 italic">
-                  "How <span className="text-mtn-yellow font-bold text-shadow-sm" style={{ textShadow: '1px 1px 0 #000' }}>MTN</span> outpaced global giants like 
-                  <span className="text-red-600 font-semibold mx-1">Vodacom</span>, 
-                  <span className="text-red-500 font-semibold mx-1">Airtel</span>, and 
-                  <span className="text-orange-500 font-semibold mx-1">Orange</span>."
+                  "300Million Connections is the definitive story of how Africa rewired its destiny through innovation, courage, and connectivity."
                 </p>
                 <div className="mt-8 flex items-center gap-2 opacity-50">
                   <span className="h-px w-8 bg-slate-400"></span>
@@ -156,6 +175,7 @@ const Book3D: React.FC = () => {
       `}>
         Click to Open
       </div>
+
     </div>
   );
 };

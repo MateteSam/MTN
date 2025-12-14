@@ -39,9 +39,12 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-6">
         <div className={`glass-panel rounded-full px-6 py-3 flex items-center justify-between transition-all duration-300 ${scrolled ? 'bg-slate-900/90 shadow-lg border-white/10' : 'bg-transparent border-transparent'}`}>
           
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <BookOpen className="text-mtn-yellow w-6 h-6" />
-            <span className="font-display font-bold text-white tracking-wider">WCCCS</span>
+            <span className="font-display font-bold tracking-wider text-lg">
+              <span className="text-white">WCCCS </span>
+              <span className="text-mtn-yellow text-base">Publishing</span>
+            </span>
           </div>
 
           {/* Desktop Nav */}

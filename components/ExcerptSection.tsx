@@ -12,7 +12,7 @@ const ExcerptSection: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <span className="text-mtn-yellow text-xs font-bold tracking-[0.3em] uppercase block mb-4">Exclusive Preview</span>
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6">License to Dream: Nigeria, 2001</h2>
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6">Excerpt from: 300 Million Connections: MTN & the African Tech Revolution</h2>
           </div>
 
           <div className="glass-panel p-8 md:p-16 rounded-3xl border-t border-white/10 shadow-2xl relative neon-outline">
@@ -30,8 +30,8 @@ const ExcerptSection: React.FC = () => {
               <p className="text-xs text-slate-500 uppercase tracking-widest">
                 Excerpt from Chapter 3 • © 2026 Dr. Charles Wirsuiy Snr.
               </p>
-              <button className="text-mtn-yellow hover:text-white transition-colors font-bold text-sm flex items-center gap-2 group neon-outline" onMouseEnter={(e)=>{ (e.currentTarget.classList.add('animate-in')); }} onMouseLeave={(e)=>{ e.currentTarget.classList.remove('animate-in'); }}>
-                READ FULL CHAPTER <span className="group-hover:translate-x-1 transition-transform">→</span>
+              <button className="text-mtn-yellow hover:text-white transition-colors font-bold text-sm flex items-center gap-2 group neon-outline" onClick={() => window.open('/Excerpt.pdf', '_blank')}>
+                READ FULL EXCERPT <span className="group-hover:translate-x-1 transition-transform">→</span>
               </button>
             </div>
           </div>
