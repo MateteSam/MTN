@@ -1,0 +1,8 @@
+/* Minimal index.css to satisfy /index.css request from index.html
+   Tailwind utilities are loaded via CDN in index.html, so this file is intentionally
+   minimal to avoid 404s during development and production builds. */
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
