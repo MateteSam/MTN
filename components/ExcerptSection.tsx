@@ -22,25 +22,30 @@ const ExcerptSection: React.FC<ExcerptSectionProps> = ({ onReadExcerpt }) => {
           <div className="glass-panel p-8 md:p-16 rounded-3xl border-t border-white/10 shadow-2xl relative neon-outline">
             <FileText className="absolute top-8 right-8 text-white/5 w-24 h-24 rotate-12" />
             
-            {/* About The Book - show on homepage instead of repeating excerpt */}
-            <div className="text-center mb-8">
-              <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-2 tracking-wide">
-                About The Book
+            {/* Book-style Chapter Heading */}
+            <div className="text-center mb-12 pb-8 border-b border-white/10">
+              <h3 className="text-2xl md:text-3xl font-display font-bold text-mtn-yellow mb-2 tracking-wide">
+                Chapter 3
               </h3>
-              <p className="max-w-3xl mx-auto text-slate-300 font-serif leading-relaxed">
-                {AUTHOR_BIO.split('\n')[0]}
-              </p>
+              <h4 className="text-xl md:text-2xl font-serif font-medium text-white tracking-wide">
+                A Network Is Born
+              </h4>
+              <h5 className="text-lg md:text-xl font-serif text-slate-400 italic mt-1">
+                The Founders
+              </h5>
             </div>
 
             <div className="prose prose-invert prose-lg max-w-none font-serif text-slate-300 leading-loose">
-              <p className="mb-6">
-                {AUTHOR_BIO.split('\n').slice(1).join(' ')}
-              </p>
+              {EXCERPT_TEXT.split('\n\n').slice(0, 2).map((paragraph, i) => (
+                <p key={i} className="mb-6 first-letter:text-5xl first-letter:font-bold first-letter:text-mtn-yellow first-letter:float-left first-letter:mr-3 first-letter:mt-[-10px]">
+                  {paragraph}
+                </p>
+              ))}
             </div>
 
             <div className="mt-8 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-xs text-slate-500 uppercase tracking-widest">
-                About the author • © 2026 Dr. Charles Wirsuiy Snr.
+                Excerpt from Chapter 3 • © 2026 Dr. Charles Wirsuiy Snr.
               </p>
               <button className="text-mtn-yellow hover:text-white transition-colors font-bold text-sm flex items-center gap-2 group neon-outline" onClick={onReadExcerpt}>
                 READ FULL EXCERPT <span className="group-hover:translate-x-1 transition-transform">→</span>
