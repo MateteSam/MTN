@@ -68,7 +68,11 @@ const AboutSection: React.FC = () => {
               <div className="space-y-6 text-slate-300 leading-relaxed max-w-2xl">
                 <h3 className="text-3xl md:text-4xl font-semibold text-white">Dr. Charles Wirsuiy</h3>
                 <p className="mt-2 text-sm text-mtn-yellow font-medium tracking-wide">Writer · Researcher · Storyteller</p>
-                <p className="mt-6 text-lg">{AUTHOR_BIO.split('\n')[0]}</p>
+                <div className="mt-6 space-y-4">
+                  {AUTHOR_BIO.split('\n\n').map((paragraph, i) => (
+                    <p key={i} className="text-base md:text-lg">{paragraph}</p>
+                  ))}
+                </div>
                 <p className="text-base text-slate-500 italic">Also author of "God Lives in Sandton" and "Microsoft at 50".</p>
                 <div className="flex items-center gap-3 text-base text-slate-400 pt-4">
                   <Globe className="w-5 h-5" />
@@ -94,7 +98,11 @@ const AboutSection: React.FC = () => {
               </div>
               <div className="prose max-w-none text-slate-800 dark:text-slate-100">
                 <h3 className="text-3xl font-display font-bold mb-2">Dr. Charles Wirsuiy</h3>
-                <p className="text-lg leading-relaxed">{AUTHOR_BIO.split('\n')[0]}</p>
+                <div className="space-y-4">
+                  {AUTHOR_BIO.split('\n\n').map((paragraph, i) => (
+                    <p key={i} className="text-lg leading-relaxed">{paragraph}</p>
+                  ))}
+                </div>
                 <p className="mt-4 text-sm italic text-slate-600">Also author of "God Lives in Sandton" and "Microsoft at 50".</p>
                 <div className="mt-6 text-sm text-slate-600 flex items-center gap-2"><Globe className="w-4 h-4" /> Lives in South Africa</div>
               </div>

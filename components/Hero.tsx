@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { ArrowRight, Wifi, ChevronRight } from 'lucide-react';
 import Book3D from './Book3D';
 import { HERO_CONTENT } from '../constants';
@@ -8,46 +8,20 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const slides = ['/mockup1.png', '/mockup2.png', '/banner.png'];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [slides.length]);
 
   return (
     <section className="relative min-h-screen flex flex-col items-center pt-0 pb-20 overflow-hidden bg-[#020617]">
 
-      {/* Slideshow/Banner at the very top, full-width without cropping */}
+      {/* Banner at the very top, single image fitting perfectly */}
       <div
         className="w-full relative rounded-none overflow-hidden border-b border-white/10 shadow-2xl bg-black"
         style={{ aspectRatio: '16 / 9', maxHeight: '70vh' }}
       >
-        {slides.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-all duration-700 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
-          >
-            <img
-              src={slide}
-              alt={`Slide ${index + 1}`}
-              className="w-full h-full object-contain"
-            />
-          </div>
-        ))}
-        {/* Slide Indicators */}
-        <div className="absolute bottom-4 left-6 flex gap-2 z-10">
-          {slides.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentSlide(idx)}
-              className={`h-1 rounded-full transition-all duration-300 ${idx === currentSlide ? 'w-8 bg-mtn-yellow' : 'w-2 bg-white/30 hover:bg-white/60'}`}
-            />
-          ))}
-        </div>
+        <img
+          src="/banner.png"
+          alt="300 Million Connections Banner"
+          className="absolute inset-0 w-full h-full object-contain"
+        />
       </div>
 
       {/* Main Content Grid */}
