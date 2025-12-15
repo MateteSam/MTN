@@ -21,20 +21,20 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
   return (
     <section className="relative min-h-screen flex flex-col items-center pt-0 pb-20 overflow-hidden bg-[#020617]">
 
-      {/* Slideshow/Banner at the very top, no overlay */}
-      <div className="w-full h-[300px] md:h-[400px] lg:h-[500px] relative rounded-none overflow-hidden border-b border-white/10 shadow-2xl">
+      {/* Slideshow/Banner at the very top, full-width without cropping */}
+      <div
+        className="w-full relative rounded-none overflow-hidden border-b border-white/10 shadow-2xl bg-black"
+        style={{ aspectRatio: '16 / 9', maxHeight: '70vh' }}
+      >
         {slides.map((slide, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-all duration-1000 ease-in-out transform ${index === currentSlide
-                ? 'opacity-100 scale-100 translate-x-0'
-                : 'opacity-0 scale-110 translate-x-12'
-              }`}
+            className={`absolute inset-0 transition-all duration-700 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
           >
             <img
               src={slide}
               alt={`Slide ${index + 1}`}
-              className="w-full h-full object-cover object-top"
+              className="w-full h-full object-contain"
             />
           </div>
         ))}
@@ -44,8 +44,7 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
             <button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
-              className={`h-1 rounded-full transition-all duration-300 ${idx === currentSlide ? 'w-8 bg-mtn-yellow' : 'w-2 bg-white/30 hover:bg-white/60'
-                }`}
+              className={`h-1 rounded-full transition-all duration-300 ${idx === currentSlide ? 'w-8 bg-mtn-yellow' : 'w-2 bg-white/30 hover:bg-white/60'}`}
             />
           ))}
         </div>
