@@ -79,7 +79,7 @@ const ExcerptPage: React.FC<ExcerptPageProps> = ({ onBack }) => {
                             }}
                             className="px-12 py-5 bg-black text-white font-sans font-bold uppercase tracking-[0.2em] hover:bg-mtn-yellow hover:text-black transition-all shadow-xl hover:translate-y-[-2px]"
                         >
-                            Preorder the Full Book
+                            PRE-ORDER NOW
                         </button>
                     </div>
                 </div>

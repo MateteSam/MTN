@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
           <div className="space-y-4">
              <h4 className="text-white font-bold uppercase tracking-wider">Assurance</h4>
              <p className="text-sm leading-relaxed">
-               Preorders processed immediately. Full refunds available before shipping if publication date changes.
+               Pre-orders processed immediately. Full refunds available before shipping if publication date changes.
              </p>
              <div className="flex items-center gap-2 text-mtn-yellow text-sm">
                 <span className="w-2 h-2 bg-green-500 rounded-full"></span>

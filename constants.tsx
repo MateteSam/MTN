@@ -14,7 +14,7 @@ export const PRICING_TIERS: PricingTier[] = [
       'Invitation to "Africa’s Digital Century" launch',
       'Priority shipping on release week'
     ],
-    cta: 'Preorder Hardcover',
+    cta: 'Pre-Order Hardcover',
     color: 'yellow',
     badge: 'Limited Time'
   },
@@ -44,7 +44,7 @@ export const PRICING_TIERS: PricingTier[] = [
       'Digital bonus photo gallery',
       'Lifetime access to future updated editions'
     ],
-    cta: 'Preorder eBook',
+    cta: 'Pre-Order eBook',
     color: 'blue'
   },
   {
@@ -57,7 +57,7 @@ export const PRICING_TIERS: PricingTier[] = [
       'Bonus Q&A session: "The Making of"',
       'Compatible with all major platforms'
     ],
-    cta: 'Preorder Audiobook',
+    cta: 'Pre-Order Audiobook',
     color: 'orange'
   }
 ];

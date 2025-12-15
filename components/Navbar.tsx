@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'py-4' : 'py-6'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${scrolled ? 'py-4' : 'py-6'}`}>
       <div className="container mx-auto px-6">
         <div className={`glass-panel rounded-full px-6 py-3 flex items-center justify-between transition-all duration-300 ${scrolled ? 'bg-slate-900/90 shadow-lg border-white/10' : 'bg-transparent border-transparent'}`}>
           
@@ -72,7 +72,7 @@ const Navbar: React.FC = () => {
               href="#pricing"
               className="bg-mtn-yellow text-black px-5 py-2 rounded-full font-bold text-sm hover:bg-yellow-300 transition-transform hover:scale-105"
             >
-              PREORDER
+              PRE-ORDER
             </a>
             <button
               aria-label="Toggle theme"
@@ -112,7 +112,7 @@ const Navbar: React.FC = () => {
               className="bg-mtn-yellow text-black px-5 py-3 rounded-xl font-bold text-center mt-2"
               onClick={() => setIsOpen(false)}
             >
-              PREORDER NOW
+              PRE-ORDER NOW
             </a>
           </div>
         </div>

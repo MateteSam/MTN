@@ -19,13 +19,40 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
   }, [slides.length]);
 
   return (
-    <section className="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden bg-[#020617]">
+    <section className="relative min-h-screen flex flex-col items-center pt-0 pb-20 overflow-hidden bg-[#020617]">
 
-      {/* Background Ambience */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-tech-purple/10 to-transparent pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-mtn-yellow/5 rounded-full blur-[120px] pointer-events-none"></div>
+      {/* Slideshow/Banner at the very top, no overlay */}
+      <div className="w-full h-[300px] md:h-[400px] lg:h-[500px] relative rounded-none overflow-hidden border-b border-white/10 shadow-2xl">
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-all duration-1000 ease-in-out transform ${index === currentSlide
+                ? 'opacity-100 scale-100 translate-x-0'
+                : 'opacity-0 scale-110 translate-x-12'
+              }`}
+          >
+            <img
+              src={slide}
+              alt={`Slide ${index + 1}`}
+              className="w-full h-full object-cover object-top"
+            />
+          </div>
+        ))}
+        {/* Slide Indicators */}
+        <div className="absolute bottom-4 left-6 flex gap-2 z-10">
+          {slides.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentSlide(idx)}
+              className={`h-1 rounded-full transition-all duration-300 ${idx === currentSlide ? 'w-8 bg-mtn-yellow' : 'w-2 bg-white/30 hover:bg-white/60'
+                }`}
+            />
+          ))}
+        </div>
+      </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      {/* Main Content Grid */}
+      <div className="container mx-auto px-6 relative z-10 mt-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
 
           {/* LEFT COLUMN: 3D Book */}
@@ -37,80 +64,27 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Content & Slideshow */}
+          {/* RIGHT COLUMN: Content & CTA */}
           <div className="flex flex-col gap-8 order-2 lg:order-2 text-left">
-
-            {/* Header / Chapter Info */}
-            <div className="space-y-4 animate-in fade-in slide-in-from-right-8 duration-700 ease-out">
-              <div className="flex items-center gap-3 text-mtn-yellow font-mono text-xs tracking-widest uppercase">
-                <span className="w-2 h-2 bg-mtn-yellow rounded-full animate-pulse"></span>
-                <span>{HERO_CONTENT.chapter}</span>
-              </div>
-              <h1 className="text-3xl md:text-5xl font-display font-bold text-white leading-tight">
-                {HERO_CONTENT.subheadline}
-                <span className="block text-slate-500 text-2xl md:text-3xl mt-2 font-serif italic font-normal">
-                  {HERO_CONTENT.section}
-                </span>
-              </h1>
-            </div>
-
-            {/* "Cute" Slideshow */}
-            <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
-              {slides.map((slide, index) => (
-                <div
-                  key={index}
-                  className={`absolute inset-0 transition-all duration-1000 ease-in-out transform ${index === currentSlide
-                      ? 'opacity-100 scale-100 translate-x-0'
-                      : 'opacity-0 scale-110 translate-x-12'
-                    }`}
-                >
-                  <img
-                    src={slide}
-                    alt={`Slide ${index + 1}`}
-                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                </div>
-              ))}
-
-              {/* Slide Indicators */}
-              <div className="absolute bottom-4 left-6 flex gap-2">
-                {slides.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentSlide(idx)}
-                    className={`h-1 rounded-full transition-all duration-300 ${idx === currentSlide ? 'w-8 bg-mtn-yellow' : 'w-2 bg-white/30 hover:bg-white/60'
-                      }`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* (Excerpt removed as requested) */}
-            <div className="hidden" />
-
             {/* Actions - Tilted CTA Buttons */}
             <div className="flex flex-wrap items-center gap-6 pt-4">
               {/* Preorder - Tilted Yellow Button */}
               <button
                 onClick={(e) => { e.preventDefault(); window.open("/api/payfast/checkout?amount=199&item_name=300%20Million%20Connections", '_blank'); }}
                 className="relative overflow-hidden transform skew-x-[-12deg] shadow-2xl"
-                aria-label="Preorder Now"
+                aria-label="Pre-Order Now"
               >
                 <div className="bg-mtn-yellow px-10 py-4 text-black font-bold text-lg flex items-center gap-3 hover:brightness-95 transition-all duration-200">
-                  <span className="skew-x-[12deg]">PREORDER NOW</span>
+                  <span className="skew-x-[12deg]">PRE-ORDER NOW</span>
                   <ChevronRight className="w-5 h-5 skew-x-[12deg]" />
                 </div>
               </button>
-
-              {/* Read Excerpt removed as requested */}
 
               <div className="flex items-center gap-2 text-slate-500 text-xs uppercase tracking-widest">
                 <Wifi className="w-4 h-4" />
                 <span>300 Million Connections</span>
               </div>
             </div>
-
           </div>
 
         </div>

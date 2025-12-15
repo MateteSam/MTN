@@ -12,7 +12,7 @@ Required environment variables (set in Vercel/Netlify or your deployment):
 - PAYFAST_MODE = 'sandbox' or 'live' (default: 'sandbox')
 
 How it works:
-- The frontend PREORDER button opens `/api/payfast/checkout?amount=199&item_name=300%20Million%20Connections` in a new tab.
+- The frontend PRE-ORDER button opens `/api/payfast/checkout?amount=199&item_name=300%20Million%20Connections` in a new tab.
 - The serverless function builds the PayFast form, signs it using your merchant key/passphrase, and returns HTML that auto-submits the form to PayFast.
 - PayFast will redirect back to `/?payment=success` or `/?payment=cancel` depending on outcome.
 - PayFast also posts IPN notifications to `/api/payfast/notify` (you should implement verification and order updates there).
@@ -27,6 +27,6 @@ Notes & security:
 
 If you'd like, I can:
 - Add a serverless `notify` verifier implementation (requires reading PayFast docs and verifying signatures).
-- Add a small dashboard page to view pending preorders saved in a simple JSON file or lightweight DB.
+- Add a small dashboard page to view pending pre-orders saved in a simple JSON file or lightweight DB.
 
 Tell me how you'd like to proceed (deploy to Vercel now, or implement local dev server).

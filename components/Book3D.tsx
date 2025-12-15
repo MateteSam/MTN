@@ -30,7 +30,7 @@ const Book3D: React.FC = () => {
 
   return (
     <div 
-      className="relative w-64 h-96 md:w-80 md:h-[500px] z-50 transition-all duration-1000 ease-in-out"
+      className="relative w-64 h-96 md:w-80 md:h-[500px] z-10 transition-all duration-1000 ease-in-out"
       style={{ perspective: '2000px' }}
       onClick={() => setIsOpen(!isOpen)}
       onMouseEnter={() => setIsHovered(true)}
@@ -123,7 +123,7 @@ const Book3D: React.FC = () => {
                 </div>
                 
                 <h3 className="text-4xl md:text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-b from-mtn-yellow to-orange-600 tracking-tighter drop-shadow-sm leading-[1.1]">
-                  PREORDER<br/>TODAY!
+                  PRE-ORDER<br/>TODAY!
                 </h3>
                 
                 <p className="text-slate-500 text-sm font-medium max-w-[200px] leading-relaxed">
@@ -135,7 +135,7 @@ const Book3D: React.FC = () => {
                   onClick={(e) => { e.stopPropagation(); }}
                   className="mt-4 px-8 py-3 bg-slate-900 text-white text-xs font-bold uppercase tracking-[0.2em] hover:bg-mtn-yellow hover:text-black transition-all shadow-lg hover:shadow-mtn-yellow/50 hover:-translate-y-1"
                 >
-                  Preorder here
+                  Pre-Order here
                 </a>
              </div>
         </div>

@@ -8,7 +8,7 @@ const PricingSection: React.FC = () => {
     <section id="pricing" className="py-24 bg-slate-900 relative">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 space-y-4">
-           <h2 className="text-4xl md:text-6xl font-display font-bold text-white">Preorder Today</h2>
+           <h2 className="text-4xl md:text-6xl font-display font-bold text-white">Pre-Order Today</h2>
            <p className="text-slate-400 max-w-2xl mx-auto">
              Secure your copy of the definitive narrative of Africa's digital rise. 
              All editions ship worldwide from Johannesburg.
@@ -24,7 +24,7 @@ const PricingSection: React.FC = () => {
         <div className="mt-16 glass-panel rounded-xl p-8 max-w-3xl mx-auto text-center border-l-4 border-mtn-yellow">
           <h3 className="text-xl font-bold text-white mb-2">Corporate & Institutional Orders</h3>
           <p className="text-slate-400 mb-6">
-            Bulk preorders for partners, universities, and libraries available at discounted rates (15-20% off).
+            Bulk pre-orders for partners, universities, and libraries available at discounted rates (15-20% off).
           </p>
           <a href="mailto:corporate@godlivesinsandton.store" className="inline-block bg-white/10 hover:bg-white/20 text-white px-6 py-2 rounded-lg transition-colors font-medium">
             Contact for Corporate Quote
