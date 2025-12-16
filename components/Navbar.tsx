@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, BookOpen, Sun, Moon } from 'lucide-react';
-import { startCheckout } from '../lib/checkout';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,11 +40,11 @@ const Navbar: React.FC = () => {
         <div className={`glass-panel rounded-full px-6 py-3 flex items-center justify-between transition-all duration-300 ${scrolled ? 'bg-slate-900/90 shadow-lg border-white/10' : 'bg-transparent border-transparent'}`}>
           
           <div className="flex items-center gap-3">
-            <BookOpen className="text-mtn-yellow w-6 h-6" />
-            <span className="font-display font-bold tracking-wider text-lg">
-              <span className="text-white">WCCCS </span>
-              <span className="text-mtn-yellow text-base">Publishing</span>
-            </span>
+            <img src="/logo.png" alt="300 Million Connections" className="h-10 w-auto" />
+            <div className="ml-2 leading-tight">
+              <span className="block text-white font-display font-bold tracking-wider text-lg">WCCCS</span>
+              <span className="block text-white text-sm">Publishing</span>
+            </div>
           </div>
 
           {/* Desktop Nav */}
@@ -70,10 +69,7 @@ const Navbar: React.FC = () => {
               )
             ))}
             <button
-              onClick={(e) => { 
-                e.preventDefault(); 
-                startCheckout({ amount: '545', item_name: 'Print First Edition' });
-              }}
+              onClick={(e) => { e.preventDefault(); window.open('/test-payfast.html?amount=545&item_name=Print%20First%20Edition', '_blank'); }}
               className="bg-mtn-yellow text-black px-5 py-2 rounded-full font-bold text-sm hover:bg-yellow-300 transition-transform hover:scale-105"
             >
               PRE-ORDER
@@ -112,10 +108,7 @@ const Navbar: React.FC = () => {
               </a>
             ))}
             <button
-              onClick={() => { 
-                setIsOpen(false); 
-                startCheckout({ amount: '545', item_name: 'Print First Edition' });
-              }}
+              onClick={() => { setIsOpen(false); window.open('/test-payfast.html?amount=545&item_name=Print%20First%20Edition', '_blank'); }}
               className="bg-mtn-yellow text-black px-5 py-3 rounded-xl font-bold text-center mt-2"
             >
               PRE-ORDER NOW
