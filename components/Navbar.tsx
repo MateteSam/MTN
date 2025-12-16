@@ -35,16 +35,16 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${scrolled ? 'py-4' : 'py-6'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'py-4' : 'py-6'}`}>
       <div className="container mx-auto px-6">
         <div className={`glass-panel rounded-full px-6 py-3 flex items-center justify-between transition-all duration-300 ${scrolled ? 'bg-slate-900/90 shadow-lg border-white/10' : 'bg-transparent border-transparent'}`}>
           
           <div className="flex items-center gap-3">
-            <BookOpen className="text-mtn-yellow w-6 h-6" />
-            <span className="font-display font-bold tracking-wider text-lg">
-              <span className="text-white">WCCCS </span>
-              <span className="text-mtn-yellow text-base">Publishing</span>
-            </span>
+            <img src="/logo.png" alt="300 Million Connections" className="h-10 w-auto" />
+            <div className="ml-2 leading-tight">
+              <span className="block text-white font-display font-bold tracking-wider text-lg">WCCCS</span>
+              <span className="block text-white text-sm">Publishing</span>
+            </div>
           </div>
 
           {/* Desktop Nav */}
@@ -68,12 +68,12 @@ const Navbar: React.FC = () => {
                 </a>
               )
             ))}
-            <a 
-              href="#pricing"
+            <button
+              onClick={(e) => { e.preventDefault(); window.open('/test-payfast.html?amount=545&item_name=Print%20First%20Edition', '_blank'); }}
               className="bg-mtn-yellow text-black px-5 py-2 rounded-full font-bold text-sm hover:bg-yellow-300 transition-transform hover:scale-105"
             >
               PRE-ORDER
-            </a>
+            </button>
             <button
               aria-label="Toggle theme"
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
@@ -107,13 +107,12 @@ const Navbar: React.FC = () => {
                 {link.label}
               </a>
             ))}
-            <a 
-              href="#pricing"
+            <button
+              onClick={() => { setIsOpen(false); window.open('/test-payfast.html?amount=545&item_name=Print%20First%20Edition', '_blank'); }}
               className="bg-mtn-yellow text-black px-5 py-3 rounded-xl font-bold text-center mt-2"
-              onClick={() => setIsOpen(false)}
             >
               PRE-ORDER NOW
-            </a>
+            </button>
           </div>
         </div>
       )}

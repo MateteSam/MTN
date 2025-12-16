@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>PayFast Test Redirect</title>
+  </head>
+  <body>
+    <p>Preparing redirect to PayFast (sandbox). If nothing happens, click the button below.</p>
+    <form id="payfast" action="https://sandbox.payfast.co.za/eng/process" method="post">
+      <input type="hidden" name="merchant_id" value="32969993"/>
+<input type="hidden" name="merchant_key" value="9adj4weeiipdp"/>
+<input type="hidden" name="amount" value="545.00"/>
+<input type="hidden" name="item_name" value="Print First Edition"/>
+<input type="hidden" name="return_url" value="http://localhost:3000/"/>
+<input type="hidden" name="cancel_url" value="http://localhost:3000/"/>
+<input type="hidden" name="notify_url" value="http://localhost:3001/api/payfast/notify"/>
+<input type="hidden" name="signature" value="694badf952dd9bce6e0d96b10b8e9b2f"/>
+      <noscript>
+        <button type="submit">Continue to PayFast</button>
+      </noscript>
+    </form>
+    <script>document.getElementById('payfast').submit();</script>
+  </body>
+</html>

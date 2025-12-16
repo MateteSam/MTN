@@ -19,7 +19,7 @@ const AboutSection: React.FC = () => {
               From a startup in post-apartheid South Africa to the first African company to reach 300 million subscribers, MTN’s journey mirrors the transformation of a continent.
             </p>
             <p>
-              Told in a narrative voice that blends the rigour of history with the sweep of literary storytelling, <span className="text-white font-medium">300 Million Connections</span> traces how a single idea—that Africans could build their own global technology network—became one of the greatest business revolutions of the 21st century.
+              Told in a narrative voice that blends the rigour of history with the sweep of literary storytelling, <span className="text-white font-medium">300 Million Connections</span> traces how a single idea that Africans could build their own global technology network became one of the greatest business revolutions of the 21st century.
             </p>
             <ul className="space-y-4 mt-6 pl-4 border-l border-white/10">
               <li className="flex gap-4">

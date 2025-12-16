@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { ArrowLeft, BookOpen, Share2 } from 'lucide-react';
+import { startCheckout } from '../lib/checkout';
 import { EXCERPT_TEXT, HERO_CONTENT } from '../constants';
 
 interface ExcerptPageProps {
@@ -74,10 +75,10 @@ const ExcerptPage: React.FC<ExcerptPageProps> = ({ onBack }) => {
                     <div className="pt-8">
                         <button
                             onClick={(e) => {
-                                e.preventDefault();
-                                window.open("/api/payfast/checkout?amount=199&item_name=300%20Million%20Connections", '_blank');
-                            }}
-                            className="px-12 py-5 bg-black text-white font-sans font-bold uppercase tracking-[0.2em] hover:bg-mtn-yellow hover:text-black transition-all shadow-xl hover:translate-y-[-2px]"
+                                    e.preventDefault();
+                                    startCheckout({ amount: '545', item_name: 'Print First Edition' });
+                                }}
+                                className="px-12 py-5 bg-black text-white font-sans font-bold uppercase tracking-[0.2em] hover:bg-mtn-yellow hover:text-black transition-all shadow-xl hover:translate-y-[-2px]"
                         >
                             PRE-ORDER NOW
                         </button>

@@ -26,11 +26,19 @@ module.exports = async (req, res) => {
 
     // Build parameters required by PayFast
     const origin = (req.headers['x-forwarded-proto'] || 'https') + '://' + (req.headers['x-forwarded-host'] || req.headers.host);
-    const return_url = `${origin}/?payment=success`;
-    const cancel_url = `${origin}/?payment=cancel`;
+    // Persist a local order record where possible (useful for local dev and staging)
+    const m_payment_id = `preorder_${Date.now()}`;
     const notify_url = `${origin}/api/payfast/notify`;
+    const return_url = `${origin}/payment-success?m_payment_id=${m_payment_id}`;
+    const cancel_url = `${origin}/payment-cancel?m_payment_id=${m_payment_id}`;
+    try {
+      const orders = require('../../lib/orders');
+      await orders.createOrder({ m_payment_id, amount: parseFloat(amount).toFixed(2), item_name, status: 'pending' });
+    } catch (err) {
+      console.warn('Could not persist order', err && err.message ? err.message : err);
+    }
 
-    const params = {
+    const params = { m_payment_id,
       merchant_id: merchant_id,
       merchant_key: merchant_key,
       return_url,
@@ -39,7 +47,6 @@ module.exports = async (req, res) => {
       name_first: '',
       name_last: '',
       email_address: '',
-      m_payment_id: `preorder_${Date.now()}`,
       amount: parseFloat(amount).toFixed(2),
       item_name: item_name,
     };

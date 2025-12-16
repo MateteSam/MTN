@@ -2,8 +2,13 @@ import React from 'react';
 import { Check, Star } from 'lucide-react';
 import { PRICING_TIERS } from '../constants';
 import { PricingTier } from '../types';
+import { startCheckout } from '../lib/checkout';
 
 const PricingSection: React.FC = () => {
+  const handlePreorder = async (tier: PricingTier) => {
+    await startCheckout({ amount: tier.price, item_name: tier.title });
+  };
+
   return (
     <section id="pricing" className="py-24 bg-slate-900 relative">
       <div className="container mx-auto px-6">
@@ -17,7 +22,7 @@ const PricingSection: React.FC = () => {
 
         <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
           {PRICING_TIERS.map((tier) => (
-            <PricingCard key={tier.id} tier={tier} />
+            <PricingCard key={tier.id} tier={tier} onPreorder={handlePreorder} />
           ))}
         </div>
 
@@ -35,7 +40,7 @@ const PricingSection: React.FC = () => {
   );
 };
 
-const PricingCard: React.FC<{ tier: PricingTier }> = ({ tier }) => {
+const PricingCard: React.FC<{ tier: PricingTier; onPreorder: (tier: PricingTier) => void }> = ({ tier, onPreorder }) => {
   const isCollector = tier.id === 'collector';
   
   const colorMap = {
@@ -92,7 +97,9 @@ const PricingCard: React.FC<{ tier: PricingTier }> = ({ tier }) => {
         ))}
       </ul>
 
-      <button className={`w-full py-3 rounded-lg font-bold text-sm transition-colors ${btnColorMap[tier.color]}`}>
+      <button
+        onClick={() => onPreorder(tier)}
+        className={`w-full py-3 rounded-lg font-bold text-sm transition-colors ${btnColorMap[tier.color]}`}>
         {tier.cta} ➜
       </button>
     </div>
