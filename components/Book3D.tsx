@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
 
+import { startCheckout } from '../lib/checkout';
+
 const Book3D: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -96,7 +98,7 @@ const Book3D: React.FC = () => {
             onClick={(e) => {
               e.stopPropagation();
               e.preventDefault();
-              window.open('/test-payfast.html?amount=545&item_name=Print%20First%20Edition', '_blank');
+              startCheckout({ amount: '545', item_name: 'Print First Edition' });
             }}
             className="mt-4 px-8 py-3 bg-slate-900 text-white text-xs font-bold uppercase tracking-[0.2em] hover:bg-mtn-yellow hover:text-black transition-all shadow-lg hover:shadow-mtn-yellow/50 hover:-translate-y-1"
           >

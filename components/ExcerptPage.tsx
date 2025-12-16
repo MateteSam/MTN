@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { ArrowLeft, BookOpen, Share2 } from 'lucide-react';
+import { startCheckout } from '../lib/checkout';
 import { EXCERPT_TEXT, HERO_CONTENT } from '../constants';
 
 interface ExcerptPageProps {

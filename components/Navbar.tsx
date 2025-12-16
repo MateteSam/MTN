@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, BookOpen, Sun, Moon } from 'lucide-react';
+import { startCheckout } from '../lib/checkout';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);

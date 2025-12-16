@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, Wifi, ChevronRight } from 'lucide-react';
 import Book3D from './Book3D';
+import { startCheckout } from '../lib/checkout';
 import { HERO_CONTENT } from '../constants';
 
 interface HeroProps {

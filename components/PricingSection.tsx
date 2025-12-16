@@ -2,43 +2,11 @@ import React from 'react';
 import { Check, Star } from 'lucide-react';
 import { PRICING_TIERS } from '../constants';
 import { PricingTier } from '../types';
+import { startCheckout } from '../lib/checkout';
 
 const PricingSection: React.FC = () => {
   const handlePreorder = async (tier: PricingTier) => {
-    // Open new window immediately so popup blockers allow it (user gesture)
-    const newWindow = window.open('', '_blank');
-    if (!newWindow) {
-      alert('Popup blocked. Please allow popups for this site or try again.');
-      return;
-    }
-
-    try {
-      const resp = await fetch('/api/payfast/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount: tier.price.replace(/[^0-9.]/g, ''), item_name: tier.title })
-      });
-
-      const html = await resp.text();
-
-      if (!resp.ok) {
-        // fallback to local test page for offline/local testing
-        const qs = new URLSearchParams({ amount: tier.price.replace(/[^0-9.]/g, ''), item_name: tier.title }).toString();
-        newWindow.location = `/test-payfast.html?${qs}`;
-        return;
-      }
-
-      // success — write the PayFast form HTML into the opened tab
-      newWindow.document.open();
-      newWindow.document.write(html);
-      newWindow.document.close();
-    } catch (err) {
-      if (newWindow) {
-        const qs = new URLSearchParams({ amount: tier.price.replace(/[^0-9.]/g, ''), item_name: tier.title }).toString();
-        newWindow.location = `/test-payfast.html?${qs}`;
-      }
-      console.error('PayFast checkout error', err);
-    }
+    await startCheckout({ amount: tier.price, item_name: tier.title });
   };
 
   return (
