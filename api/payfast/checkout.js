@@ -19,8 +19,10 @@ module.exports = async (req, res) => {
       return;
     }
 
-    // Read amount and item_name from query (quick integration)
-    const { amount = '0.00', item_name = 'Preorder' } = req.query;
+    // Support GET (query) or POST (JSON body)
+    const isPost = req.method && req.method.toLowerCase() === 'post';
+    const payload = isPost ? (req.body || {}) : req.query || {};
+    const { amount = '0.00', item_name = 'Preorder' } = payload;
 
     // Build parameters required by PayFast
     const origin = (req.headers['x-forwarded-proto'] || 'https') + '://' + (req.headers['x-forwarded-host'] || req.headers.host);
