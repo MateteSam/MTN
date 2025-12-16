@@ -4,6 +4,43 @@ import { PRICING_TIERS } from '../constants';
 import { PricingTier } from '../types';
 
 const PricingSection: React.FC = () => {
+  const handlePreorder = async (tier: PricingTier) => {
+    // Open new window immediately so popup blockers allow it (user gesture)
+    const newWindow = window.open('', '_blank');
+    if (!newWindow) {
+      alert('Popup blocked. Please allow popups for this site or try again.');
+      return;
+    }
+
+    try {
+      const resp = await fetch('/api/payfast/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: tier.price.replace(/[^0-9.]/g, ''), item_name: tier.title })
+      });
+
+      const html = await resp.text();
+
+      if (!resp.ok) {
+        // fallback to local test page for offline/local testing
+        const qs = new URLSearchParams({ amount: tier.price.replace(/[^0-9.]/g, ''), item_name: tier.title }).toString();
+        newWindow.location = `/test-payfast.html?${qs}`;
+        return;
+      }
+
+      // success — write the PayFast form HTML into the opened tab
+      newWindow.document.open();
+      newWindow.document.write(html);
+      newWindow.document.close();
+    } catch (err) {
+      if (newWindow) {
+        const qs = new URLSearchParams({ amount: tier.price.replace(/[^0-9.]/g, ''), item_name: tier.title }).toString();
+        newWindow.location = `/test-payfast.html?${qs}`;
+      }
+      console.error('PayFast checkout error', err);
+    }
+  };
+
   return (
     <section id="pricing" className="py-24 bg-slate-900 relative">
       <div className="container mx-auto px-6">
@@ -35,7 +72,7 @@ const PricingSection: React.FC = () => {
   );
 };
 
-const PricingCard: React.FC<{ tier: PricingTier }> = ({ tier }) => {
+const PricingCard: React.FC<{ tier: PricingTier; onPreorder: (tier: PricingTier) => void }> = ({ tier, onPreorder }) => {
   const isCollector = tier.id === 'collector';
   
   const colorMap = {
@@ -92,7 +129,9 @@ const PricingCard: React.FC<{ tier: PricingTier }> = ({ tier }) => {
         ))}
       </ul>
 
-      <button className={`w-full py-3 rounded-lg font-bold text-sm transition-colors ${btnColorMap[tier.color]}`}>
+      <button
+        onClick={() => onPreorder(tier)}
+        className={`w-full py-3 rounded-lg font-bold text-sm transition-colors ${btnColorMap[tier.color]}`}>
         {tier.cta} ➜
       </button>
     </div>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>PayFast Test Page</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:24px;color:#111} .panel{max-width:800px;margin:0 auto;padding:24px;border:1px solid #ddd;border-radius:8px}</style>
+  </head>
+  <body>
+    <div class="panel">
+      <h1>PayFast Test Redirect</h1>
+      <p>This page simulates the result of a backend PayFast checkout response. It will auto-submit a form to the PayFast sandbox with the supplied query parameters.</p>
+
+      <div id="info"></div>
+
+      <form id="pf" action="https://sandbox.payfast.co.za/eng/process" method="post"></form>
+    </div>
+
+    <script>
+      function parseQS() {
+        const qs = new URLSearchParams(location.search);
+        const out = {};
+        for (const [k,v] of qs.entries()) out[k]=v;
+        return out;
+      }
+
+      const params = parseQS();
+      const origin = window.location.origin || (window.location.protocol + '//' + window.location.host);
+      const defaults = { merchant_id: '10000100', merchant_key: '46f0cd694581a', return_url: origin + '/', cancel_url: origin + '/', notify_url: origin + '/api/payfast/notify' };
+      const all = Object.assign({}, defaults, params);
+
+      const info = document.getElementById('info');
+      info.innerHTML = '<pre>' + JSON.stringify(all, null, 2) + '</pre>';
+
+      const form = document.getElementById('pf');
+      for (const k in all) {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = k;
+        input.value = all[k];
+        form.appendChild(input);
+      }
+
+      // Auto-submit only if the URL explicitly contains auto=1 (default: do not auto-submit on localhost)
+      const auto = (new URLSearchParams(location.search)).get('auto') === '1';
+      if (auto) {
+        setTimeout(()=>{ form.submit(); }, 400);
+      } else {
+        const note = document.createElement('p');
+        note.style.opacity = '0.9';
+        note.style.marginTop = '12px';
+        note.textContent = 'This page will not auto-submit by default on local dev because third-party sandboxes often reject localhost return URLs.';
+        document.querySelector('.panel').appendChild(note);
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = 'Submit to PayFast (may be rejected for localhost URLs)';
+        btn.className = 'mt-4 px-4 py-2';
+        btn.style.marginTop = '8px';
+        btn.onclick = () => form.submit();
+        document.querySelector('.panel').appendChild(btn);
+      }
+    </script>
+  </body>
+</html>

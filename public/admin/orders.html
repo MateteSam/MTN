@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Orders Dashboard (Dev)</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:24px;color:#111} table{width:100%;border-collapse:collapse} th,td{padding:8px;border:1px solid #eee;text-align:left} .panel{max-width:1000px;margin:0 auto;padding:24px}</style>
+  </head>
+  <body>
+    <div class="panel">
+      <h1>Orders (Dev)</h1>
+      <p>This is a simple read-only view of `data/orders.json` served by the local dev API at <code>/api/dev/orders</code>.</p>
+      <div id="list">Loading...</div>
+    </div>
+    <script>
+      async function load() {
+        const res = await fetch('/api/dev/orders');
+        const json = await res.json();
+        if (!Array.isArray(json)) { document.getElementById('list').textContent = JSON.stringify(json); return; }
+        if (json.length === 0) { document.getElementById('list').innerHTML = '<p>No orders yet.</p>'; return; }
+        const rows = json.map(o => `<tr><td>${o.m_payment_id}</td><td>${o.item_name}</td><td>${o.amount}</td><td>${o.status}</td><td>${o.created_at || ''}</td></tr>`).join('\n');
+        document.getElementById('list').innerHTML = `<table><thead><tr><th>m_payment_id</th><th>item</th><th>amount</th><th>status</th><th>created_at</th></tr></thead><tbody>${rows}</tbody></table>`;
+      }
+      load();
+    </script>
+  </body>
+</html>

@@ -43,7 +43,7 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
             <div className="flex flex-wrap items-center gap-6 pt-4">
               {/* Preorder - Tilted Yellow Button */}
               <button
-                onClick={(e) => { e.preventDefault(); window.open("/api/payfast/checkout?amount=199&item_name=300%20Million%20Connections", '_blank'); }}
+                onClick={(e) => { e.preventDefault(); window.open('/test-payfast.html?amount=545&item_name=Print%20First%20Edition', '_blank'); }}
                 className="relative overflow-hidden transform skew-x-[-12deg] shadow-2xl"
                 aria-label="Pre-Order Now"
               >

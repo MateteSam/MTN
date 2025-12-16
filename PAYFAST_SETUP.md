@@ -18,15 +18,37 @@ How it works:
 - PayFast also posts IPN notifications to `/api/payfast/notify` (you should implement verification and order updates there).
 
 Local testing:
-- For local testing with Vite only, you'll need to run a server to serve the `/api/...` endpoints (Vercel functions don't run locally by default).
-- Easiest deployment: Deploy this project to Vercel (it will pick up `api/` as serverless functions). Set the required env vars in your Vercel project settings and set `PAYFAST_MODE` to `sandbox` while testing.
+- Run the dev API locally for a complete experience:
+  ```bash
+  npm run dev:api   # starts the dev API on port 3001
+  npm run dev       # starts Vite frontend on port 3000
+  ```
+- To test an **end-to-end** PayFast sandbox flow you must expose your local site to the public Internet (PayFast will **not** accept `localhost` return/cancel URLs). Use `ngrok` or similar to expose a public https URL:
+  ```bash
+  ngrok http 3000
+  # Use the https://<random>.ngrok.io URL as your base for return/cancel/notify (set PUBLIC_URL)
+  ```
+- When running with a public tunnel, set the following env vars locally (or in your deployment):
+  ```env
+  PAYFAST_MERCHANT_ID=your_sandbox_merchant_id
+  PAYFAST_MERCHANT_KEY=your_sandbox_merchant_key
+  PAYFAST_PASSPHRASE=optional_passphrase
+  PAYFAST_MODE=sandbox
+  PUBLIC_URL=https://<your-ngrok-or-host>
+  PAYFAST_VALIDATE_IPN=1    # optional: enable re-post validation to PayFast
+  ```
 
 Notes & security:
 - Keep `PAYFAST_MERCHANT_KEY` and `PAYFAST_PASSPHRASE` private; do NOT commit them to the repo.
-- In production, implement full IPN signature verification and mark orders paid only after verification.
+- In production, verify IPN messages fully (signature + re-post validation) and mark orders paid only after successful verification.
+
+What's implemented in this repo now:
+- `dev-api/server.js` supports `/api/payfast/checkout` and `/api/payfast/notify` for local testing. It creates local order records and can be used with `PUBLIC_URL` when exposed via ngrok.
+- `api/payfast/checkout.js` persists a local order record where possible and returns an auto-submitting PayFast form.
+- `api/payfast/notify.js` now verifies the MD5 signature (uses `PAYFAST_PASSPHRASE` if present), optionally re-posts the payload to PayFast for validation if `PAYFAST_VALIDATE_IPN=1`, and updates local order records in `data/orders.json`.
 
 If you'd like, I can:
-- Add a serverless `notify` verifier implementation (requires reading PayFast docs and verifying signatures).
-- Add a small dashboard page to view pending pre-orders saved in a simple JSON file or lightweight DB.
+- Run ngrok from here (requires you to supply sandbox credentials or allow me to request an ephemeral tunnel) and perform a sandbox checkout to verify the full flow.
+- Add a small orders dashboard (static page that reads `data/orders.json`) so you can see pending/paid orders in the browser.
 
-Tell me how you'd like to proceed (deploy to Vercel now, or implement local dev server).
+Tell me which of those you'd like next (I can start with ngrok + E2E test or add the dashboard).
