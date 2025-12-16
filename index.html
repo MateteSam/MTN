@@ -23,53 +23,11 @@
     <!-- LinkedIn -->
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind will be built via PostCSS in dev/production (see tailwind.config.cjs) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
-    <script>
-      if (window.tailwind) tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              mtn: {
-                yellow: '#ffcc00', // Approximate MTN Yellow
-                dark: '#1a1a1a',
-              },
-              tech: {
-                purple: '#7c3aed',
-                cyan: '#06b6d4',
-              }
-            },
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-              display: ['Space Grotesk', 'sans-serif'],
-            },
-            animation: {
-              'float': 'float 6s ease-in-out infinite',
-              'glitch': 'glitch 1s linear infinite',
-              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-              'dash': 'dash 20s linear infinite',
-              'dash-fast': 'dash 10s linear infinite',
-            },
-            keyframes: {
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-20px)' },
-              },
-              glitch: {
-                '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
-                '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
-                '62%': { transform: 'translate(0,0) skew(5deg)' },
-              },
-              dash: {
-                'to': { strokeDashoffset: '-1000' }
-              }
-            }
-          }
-        }
-      }
-    </script>
+    <!-- Tailwind theme extensions moved to tailwind.config.cjs -->
     <style>
       :root {
         --bg: #07142a;
