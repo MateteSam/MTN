@@ -70,7 +70,10 @@ const Navbar: React.FC = () => {
               )
             ))}
             <button
-              onClick={(e) => { e.preventDefault(); window.open('/test-payfast.html?amount=545&item_name=Print%20First%20Edition', '_blank'); }}
+              onClick={(e) => { 
+                e.preventDefault(); 
+                startCheckout({ amount: '545', item_name: 'Print First Edition' });
+              }}
               className="bg-mtn-yellow text-black px-5 py-2 rounded-full font-bold text-sm hover:bg-yellow-300 transition-transform hover:scale-105"
             >
               PRE-ORDER
@@ -109,7 +112,10 @@ const Navbar: React.FC = () => {
               </a>
             ))}
             <button
-              onClick={() => { setIsOpen(false); window.open('/test-payfast.html?amount=545&item_name=Print%20First%20Edition', '_blank'); }}
+              onClick={() => { 
+                setIsOpen(false); 
+                startCheckout({ amount: '545', item_name: 'Print First Edition' });
+              }}
               className="bg-mtn-yellow text-black px-5 py-3 rounded-xl font-bold text-center mt-2"
             >
               PRE-ORDER NOW

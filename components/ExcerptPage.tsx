@@ -76,7 +76,7 @@ const ExcerptPage: React.FC<ExcerptPageProps> = ({ onBack }) => {
                         <button
                             onClick={(e) => {
                                     e.preventDefault();
-                                    window.open('/test-payfast.html?amount=545&item_name=Print%20First%20Edition', '_blank');
+                                    startCheckout({ amount: '545', item_name: 'Print First Edition' });
                                 }}
                                 className="px-12 py-5 bg-black text-white font-sans font-bold uppercase tracking-[0.2em] hover:bg-mtn-yellow hover:text-black transition-all shadow-xl hover:translate-y-[-2px]"
                         >

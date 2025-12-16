@@ -22,7 +22,7 @@ const PricingSection: React.FC = () => {
 
         <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
           {PRICING_TIERS.map((tier) => (
-            <PricingCard key={tier.id} tier={tier} />
+            <PricingCard key={tier.id} tier={tier} onPreorder={handlePreorder} />
           ))}
         </div>
 
