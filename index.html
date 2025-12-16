@@ -23,7 +23,10 @@
     <!-- LinkedIn -->
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <!-- Tailwind will be built via PostCSS in dev/production (see tailwind.config.cjs) -->
+        <!-- Tailwind will be built via PostCSS in dev/production (see tailwind.config.cjs).
+          A CDN fallback is included here so the UI works immediately until you install
+          Tailwind dependencies locally (`npm install -D tailwindcss postcss autoprefixer`). -->
+        <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
