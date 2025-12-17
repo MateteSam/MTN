@@ -44,10 +44,10 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
               {/* Preorder - Tilted Yellow Button */}
               <button
                 onClick={(e) => { e.preventDefault(); const pricing = document.getElementById('pricing'); if (pricing) { pricing.scrollIntoView({ behavior: 'smooth' }); } }}
-                className="relative overflow-hidden transform skew-x-[-12deg] shadow-2xl"
+                className="relative overflow-hidden transform skew-x-[-12deg] shadow-2xl neon-cta"
                 aria-label="Pre-Order Now"
               >
-                <div className="bg-mtn-yellow px-10 py-4 text-black font-bold text-lg flex items-center gap-3 hover:brightness-95 transition-all duration-200">
+                <div className="px-10 py-4 text-black font-bold text-lg flex items-center gap-3">
                   <span className="skew-x-[12deg]">PRE-ORDER NOW</span>
                   <ChevronRight className="w-5 h-5 skew-x-[12deg]" />
                 </div>

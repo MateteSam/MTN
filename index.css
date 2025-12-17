@@ -11,3 +11,50 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+@layer components {
+  /* Soft glass panels with a neon accent */
+  .glass-panel {
+    @apply bg-slate-900/60 backdrop-blur-md border border-white/5 rounded-2xl;
+    box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+    position: relative;
+  }
+
+  .neon-badge {
+    @apply inline-block px-4 py-1 text-xs font-bold rounded-full text-white uppercase tracking-wider;
+    background: linear-gradient(90deg,#7c3aed,#a78bfa);
+    box-shadow: 0 10px 30px rgba(124,58,237,0.18), 0 0 18px rgba(124,58,237,0.12) inset;
+  }
+
+  .neon-cta {
+    @apply rounded-2xl font-bold;
+    background: linear-gradient(90deg,#7c3aed,#9f7aea);
+    box-shadow: 0 12px 40px rgba(124,58,237,0.18);
+    transition: filter .18s ease, transform .12s ease;
+  }
+  .neon-cta:hover { filter: brightness(.98) saturate(1.05); transform: translateY(-3px); }
+
+  .neon-heading {
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-image: linear-gradient(180deg,#f59e0b,#fb7185);
+    @apply font-display font-extrabold;
+  }
+
+  /* Subtle accent glow helper */
+  .accent-glow { position: relative; }
+  .accent-glow::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 30% 30%, rgba(124,58,237,0.22), rgba(124,58,237,0.04) 35%, rgba(124,58,237,0) 60%);
+    filter: blur(12px);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+

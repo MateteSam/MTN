@@ -51,7 +51,7 @@ const AboutSection: React.FC = () => {
           {/* About Author (stacked below) */}
           <div id="author" className="glass-panel p-8 md:p-12 rounded-2xl relative overflow-hidden group neon-outline max-w-4xl mx-auto mt-24 md:mt-28">
             <div className="absolute top-0 right-0 w-32 h-32 bg-mtn-yellow/10 rounded-full blur-3xl group-hover:bg-mtn-yellow/20 transition-all"></div>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-8 text-center">About The Author</h2>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-8 text-center neon-heading">About The Author</h2>
             <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
               <div className="p-2 rounded-full bg-gradient-to-tr from-mtn-yellow/50 via-mtn-yellow/30 to-transparent shadow-xl">
                 <div className="w-80 h-80 md:w-96 md:h-96 bg-slate-800 rounded-full flex items-center justify-center overflow-hidden transform transition-all hover:scale-105">
