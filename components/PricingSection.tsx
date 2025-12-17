@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Check, Star } from 'lucide-react';
 import { PRICING_TIERS } from '../constants';
-const PayFastForm = React.lazy(()=>import('./PayFastForm'));
 import { PricingTier } from '../types';
 
 const PricingSection: React.FC = () => {
@@ -238,16 +237,16 @@ const PricingCard: React.FC<{ tier: PricingTier }> = ({ tier }) => {
           }} className="space-y-4">
             <div className="flex items-center gap-3">
               <label htmlFor="pf-qty" className="text-sm">Quantity:</label>
-              <input id="pf-qty" className="w-20" type="number" min={1} value={quantity} onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value || '1')))} />
+              <input id="pf-qty" className="w-20 px-3 py-2 text-center bg-slate-800 text-white placeholder-slate-400 rounded border border-white/10 focus:outline-none focus:ring-2 focus:ring-mtn-yellow" type="number" min={1} value={quantity} onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value || '1')))} />
             </div>
 
             <div className="text-sm font-bold">Shipping Address</div>
             <div className="grid grid-cols-1 gap-2">
-              <input className="shipping" name="line1" placeholder="Line 1 *" value={line1} onChange={(e) => setLine1(e.target.value)} />
-              <input className="shipping" name="line2" placeholder="Line 2" value={line2} onChange={(e) => setLine2(e.target.value)} />
-              <input className="shipping" name="city" placeholder="City *" value={city} onChange={(e) => setCity(e.target.value)} />
-              <input className="shipping" name="region" placeholder="Province *" value={region} onChange={(e) => setRegion(e.target.value)} />
-              <select className="shipping" name="country" value={country} onChange={(e) => setCountry(e.target.value)}>
+              <input className="shipping w-full px-3 py-2 bg-slate-800 text-white placeholder-slate-400 rounded border border-white/10 focus:outline-none focus:ring-2 focus:ring-mtn-yellow" name="line1" placeholder="Line 1 *" value={line1} onChange={(e) => setLine1(e.target.value)} />
+              <input className="shipping w-full px-3 py-2 bg-slate-800 text-white placeholder-slate-400 rounded border border-white/10 focus:outline-none focus:ring-2 focus:ring-mtn-yellow" name="line2" placeholder="Line 2" value={line2} onChange={(e) => setLine2(e.target.value)} />
+              <input className="shipping w-full px-3 py-2 bg-slate-800 text-white placeholder-slate-400 rounded border border-white/10 focus:outline-none focus:ring-2 focus:ring-mtn-yellow" name="city" placeholder="City *" value={city} onChange={(e) => setCity(e.target.value)} />
+              <input className="shipping w-full px-3 py-2 bg-slate-800 text-white placeholder-slate-400 rounded border border-white/10 focus:outline-none focus:ring-2 focus:ring-mtn-yellow" name="region" placeholder="Province *" value={region} onChange={(e) => setRegion(e.target.value)} />
+              <select className="shipping w-full px-3 py-2 bg-slate-800 text-white placeholder-slate-400 rounded border border-white/10 focus:outline-none focus:ring-2 focus:ring-mtn-yellow" name="country" value={country} onChange={(e) => setCountry(e.target.value)}>
                 <option value="">- Select -</option>
                 <option value="South Africa">South Africa</option>
                 <option value="Botswana">Botswana</option>
@@ -257,7 +256,7 @@ const PricingCard: React.FC<{ tier: PricingTier }> = ({ tier }) => {
                 <option value="Eswatini">Eswatini</option>
                 <option value="Zimbabwe">Zimbabwe</option>
               </select>
-              <input className="shipping" name="code" placeholder="Postal Code *" value={code} onChange={(e) => setCode(e.target.value)} />
+              <input className="shipping w-full px-3 py-2 bg-slate-800 text-white placeholder-slate-400 rounded border border-white/10 focus:outline-none focus:ring-2 focus:ring-mtn-yellow" name="code" placeholder="Postal Code *" value={code} onChange={(e) => setCode(e.target.value)} />
             </div>
 
             <div className="pt-3">
