@@ -52,3 +52,33 @@ If you'd like, I can:
 - Add a small orders dashboard (static page that reads `data/orders.json`) so you can see pending/paid orders in the browser.
 
 Tell me which of those you'd like next (I can start with ngrok + E2E test or add the dashboard).
+
+---
+
+## Deployment checklist (Netlify)
+
+Follow these final steps to make PayFast work on the live site:
+
+1. Add the following environment variables to your Netlify site (Site settings → Build & deploy → Environment):
+- `PUBLIC_URL` = `https://<your-site-domain>` (example: `https://300millionconnections.store`)
+
+Note: This project was switched to a simple client-side PayFast shortlink embed (https://payf.st/jrpi0) per owner request. The previous server-side PayFast functions (`api/payfast/checkout` and `api/payfast/notify`) were disabled. If you prefer server-side integration later, follow the previous instructions, generate fresh credentials, and implement IPN verification server-side. If you previously stored merchant credentials in `.env.local`, they have been removed — rotate them if needed.
+2. Ensure the site domain (`https://300millionconnections.store`) is set in Netlify and DNS is configured.
+3. In your PayFast merchant dashboard (sandbox or live accordingly), configure any required return/cancel/notify URLs to point to your production URLs:
+   - Return URL: `https://<your-site-domain>/payment-success`
+   - Cancel URL: `https://<your-site-domain>/payment-cancel`
+   - Notify URL: `https://<your-site-domain>/api/payfast/notify`
+
+4. Deploy to Netlify (push to `main` will trigger the deploy if you have CI set up). Monitor deploy logs for function build steps and ensure functions are published (look for `Functions` artifacts in deploy log).
+
+5. Test the live checkout once the deploy completes. If PayFast returns validation errors, check the exact error message and confirm with PayFast support that the merchant ID/key are active for that environment. If needed I can run the same programmatic probe against the live PayFast endpoint and provide logs.
+
+6. After finishing tests, rotate any merchant keys that may have been exposed during testing for security.
+
+---
+
+If you want, I will:
+- push the current branch to `main` (already done) and trigger a Netlify deploy (if you give me access or have CI set up); and
+- once deployed, I'll run a live checkout probe and capture logs and responses so we can confirm the gateway is accepting your live credentials.
+
+I will proceed with those actions now on the code side (push/commit already done). To finish the live setup, I still need you to add the **production** PayFast credentials to Netlify (I cannot add secrets on your behalf without Netlify access). After you add them, tell me and I will run the live verification and fix any remaining issues.
