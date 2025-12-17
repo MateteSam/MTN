@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "dev:api": "node dev-api/server.js",
+    "dev:api:3002": "node dev-api/start.js",
     "build": "vite build",
     "preview": "vite preview"
   },

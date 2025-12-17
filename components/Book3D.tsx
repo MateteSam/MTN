@@ -98,7 +98,10 @@ const Book3D: React.FC = () => {
             onClick={(e) => {
               e.stopPropagation();
               e.preventDefault();
-              startCheckout({ amount: '545', item_name: 'Print First Edition' });
+              const pricingSection = document.getElementById('pricing');
+              if (pricingSection) {
+                pricingSection.scrollIntoView({ behavior: 'smooth' });
+              }
             }}
             className="mt-4 px-8 py-3 bg-slate-900 text-white text-xs font-bold uppercase tracking-[0.2em] hover:bg-mtn-yellow hover:text-black transition-all shadow-lg hover:shadow-mtn-yellow/50 hover:-translate-y-1"
           >

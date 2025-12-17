@@ -46,7 +46,6 @@ module.exports = async (req, res) => {
     const return_url = `${origin}/payment-success?m_payment_id=${m_payment_id}`;
     const cancel_url = `${origin}/payment-cancel?m_payment_id=${m_payment_id}`;
     try {
-      const orders = require('../../lib/orders');
       await orders.createOrder({ m_payment_id, amount: finalAmount, item_name, status: 'pending', meta: { shipping, qty } });
     } catch (err) {
       console.warn('Could not persist order', err && err.message ? err.message : err);
