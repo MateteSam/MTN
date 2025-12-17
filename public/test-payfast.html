@@ -26,11 +26,21 @@
 
       const params = parseQS();
       const origin = window.location.origin || (window.location.protocol + '//' + window.location.host);
-      const defaults = { merchant_id: '10000100', merchant_key: '46f0cd694581a', return_url: origin + '/', cancel_url: origin + '/', notify_url: origin + '/api/payfast/notify' };
+      // WARNING: Do NOT place real merchant credentials in client-side pages. This page is
+      // only for local layout testing and should never contain live merchant keys.
+      const defaults = { merchant_id: '', return_url: origin + '/', cancel_url: origin + '/', notify_url: origin + '/api/payfast/notify' };
       const all = Object.assign({}, defaults, params);
 
       const info = document.getElementById('info');
       info.innerHTML = '<pre>' + JSON.stringify(all, null, 2) + '</pre>';
+
+      if (!all.merchant_id) {
+        const warn = document.createElement('p');
+        warn.style.color = 'crimson';
+        warn.style.fontWeight = '600';
+        warn.textContent = 'No merchant_id supplied — this test page is for layout only. Use the server-side /api/payfast/checkout endpoint to create secure PayFast requests.';
+        info.appendChild(warn);
+      }
 
       const form = document.getElementById('pf');
       for (const k in all) {

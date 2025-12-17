@@ -19,10 +19,24 @@ module.exports = async (req, res) => {
       return;
     }
 
-    // Support GET (query) or POST (JSON body)
+    // Only allow POST (JSON body) to prevent leaking or overriding merchant credentials via URLs
     const isPost = req.method && req.method.toLowerCase() === 'post';
-    const payload = isPost ? (req.body || {}) : req.query || {};
-    const { amount = '0.00', item_name = 'Preorder' } = payload;
+    if (!isPost) {
+      res.status(405).send('Method Not Allowed: use POST with Content-Type application/json');
+      return;
+    }
+    const payload = req.body || {};
+    const { amount = '0.00', item_name = 'Preorder', custom_quantity = '1', shipping = {} } = payload;
+
+    // Ignore any merchant credentials passed from client (don't allow overriding server env)
+    if (payload.merchant_id || payload.merchant_key || payload.passphrase) {
+      console.warn('Rejected client-supplied merchant credentials in checkout request');
+    }
+
+    // Compute final amount server-side to prevent client tampering
+    const qty = parseInt(String(custom_quantity || '1'), 10) || 1;
+    const baseAmount = parseFloat(String(amount || '0')) || 0;
+    const finalAmount = (baseAmount * qty).toFixed(2);
 
     // Build parameters required by PayFast
     const origin = (req.headers['x-forwarded-proto'] || 'https') + '://' + (req.headers['x-forwarded-host'] || req.headers.host);
@@ -32,8 +46,7 @@ module.exports = async (req, res) => {
     const return_url = `${origin}/payment-success?m_payment_id=${m_payment_id}`;
     const cancel_url = `${origin}/payment-cancel?m_payment_id=${m_payment_id}`;
     try {
-      const orders = require('../../lib/orders');
-      await orders.createOrder({ m_payment_id, amount: parseFloat(amount).toFixed(2), item_name, status: 'pending' });
+      await orders.createOrder({ m_payment_id, amount: finalAmount, item_name, status: 'pending', meta: { shipping, qty } });
     } catch (err) {
       console.warn('Could not persist order', err && err.message ? err.message : err);
     }
@@ -47,8 +60,16 @@ module.exports = async (req, res) => {
       name_first: '',
       name_last: '',
       email_address: '',
-      amount: parseFloat(amount).toFixed(2),
+      amount: finalAmount,
       item_name: item_name,
+      custom_quantity: String(qty),
+      // include shipping fields so they are forwarded to PayFast and available in IPN
+      line1: shipping.line1 || '',
+      line2: shipping.line2 || '',
+      city: shipping.city || '',
+      region: shipping.region || '',
+      country: shipping.country || '',
+      code: shipping.code || '',
     };
 
     // Create signature string (alphabetical order of key names)

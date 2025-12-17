@@ -1,8 +1,14 @@
+import crypto from 'crypto';
+import https from 'https';
+import querystring from 'querystring';
+import { URL } from 'url';
+import * as orders from '../../lib/orders.js';
+
 // Basic notify endpoint stub for PayFast IPN (instant payment notifications).
 // PayFast will POST to this URL to notify payment status. In production,
 // verify the signature and payment data according to PayFast docs.
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   try {
     const payload = req.body || {};
     console.log('PayFast notify received', { headers: req.headers, body: payload });
@@ -13,7 +19,7 @@ module.exports = async (req, res) => {
 
     // Build verification string
     const keys = Object.keys(payload).filter(k => k !== 'signature' && payload[k] !== undefined && payload[k] !== null && payload[k] !== '').sort();
-    const pieces = keys.map(k => `${k}=${encodeURIComponent(String(payload[k]).replace(/\+/g, '%2B'))}`);
+    const pieces = keys.map(k => `${k}=${encodeURIComponent(String(payload[k]).trim()).replace(/%20/g, '+')}`);
     let signedString = pieces.join('&');
     if (passphrase) signedString += `&passphrase=${encodeURIComponent(passphrase)}`;
 
@@ -54,7 +60,6 @@ module.exports = async (req, res) => {
     }
 
     // Cross-check order record and mark as paid
-    const orders = require('../../lib/orders');
     const m_payment_id = payload.m_payment_id;
     const order = m_payment_id ? await orders.getOrder(m_payment_id) : null;
 
