@@ -37,10 +37,16 @@ const PricingSection: React.FC = () => {
         return;
       }
 
-      // success — write the PayFast form HTML into the opened tab
-      newWindow.document.open();
-      newWindow.document.write(html);
-      newWindow.document.close();
+      // If the server returned a redirect script, follow it directly in the opened tab
+      const redirectMatch = html.match(/window\.location=['"]([^'"]+)['"]/);
+      if (redirectMatch) {
+        newWindow.location = redirectMatch[1];
+      } else {
+        // Otherwise write the returned HTML into the opened tab
+        newWindow.document.open();
+        newWindow.document.write(html);
+        newWindow.document.close();
+      }
     } catch (err) {
       if (newWindow) {
         const qs = new URLSearchParams({ amount: tier.price.replace(/[^0-9.]/g, ''), item_name: tier.title }).toString();
@@ -228,7 +234,14 @@ const PricingCard: React.FC<{ tier: PricingTier }> = ({ tier }) => {
                 setLoading(false);
                 return;
               }
-              newWindow.document.open(); newWindow.document.write(html); newWindow.document.close();
+
+              // If server returned a redirect script, follow it in the new window; otherwise write the HTML
+              const redirectMatch = html.match(/window\.location=['"]([^'"]+)['"]/);
+              if (redirectMatch) {
+                newWindow.location = redirectMatch[1];
+              } else {
+                newWindow.document.open(); newWindow.document.write(html); newWindow.document.close();
+              }
             } catch (err) {
               console.error(err); newWindow.close(); alert('Could not open PayFast. Please try again.');
             }
