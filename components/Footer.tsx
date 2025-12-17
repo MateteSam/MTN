@@ -3,13 +3,19 @@ import { Mail } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-black text-slate-500 py-16 border-t border-white/5">
+    <footer className="site-footer text-slate-500 py-16">
       <div className="container mx-auto px-6">
         
-        <div className="grid md:grid-cols-3 gap-12 mb-16">
+        <div className="grid md:grid-cols-3 gap-12 mb-16 items-center">
           
-          {/* (Brand/Legal removed as requested) */}
-          <div />
+          {/* Brand */}
+          <div className="flex items-center gap-4">
+            <img src="/logo.png" alt="site logo" className="footer-logo" />
+            <div>
+              <h4 className="text-white font-bold">300 Million Connections</h4>
+              <p className="text-sm text-slate-400">Documenting the making of modern Africa through the stories of its builders.</p>
+            </div>
+          </div>
 
           {/* Assurance */}
           <div className="space-y-4">

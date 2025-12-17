@@ -42,6 +42,50 @@ html, body {
     @apply font-display font-extrabold;
   }
 
+  /* Neon yellow text utility */
+  .neon-yellow-text {
+    color: #ffd54a;
+    text-shadow: 0 6px 20px rgba(255,213,74,0.06), 0 2px 8px rgba(255,213,74,0.04);
+  }
+
+  /* Purple badge variant */
+  .purple-badge {
+    @apply inline-block px-4 py-1 text-xs font-bold rounded-full text-white uppercase tracking-wider;
+    background: linear-gradient(90deg,#6d28d9,#8b5cf6);
+    box-shadow: 0 8px 30px rgba(139,92,246,0.12), 0 0 28px rgba(139,92,246,0.08) inset;
+  }
+
+  /* Author portrait ring */
+  .author-ring {
+    border-radius: 9999px;
+    padding: 6px;
+    background: linear-gradient(180deg,#fef3c7,#fde68a);
+    box-shadow: 0 12px 30px rgba(250,204,21,0.08);
+  }
+
+  /* Excerpt read CTA */
+  .excerpt-cta {
+    @apply inline-flex items-center gap-3 px-4 py-2 rounded-full text-sm font-bold text-white;
+    background: linear-gradient(90deg,#6d28d9,#9f7aea);
+    box-shadow: 0 12px 40px rgba(127,63,249,0.12);
+  }
+
+  /* small label accent (Exclusive Preview) */
+  .small-label {
+    @apply inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-[0.3em];
+    background: rgba(255, 214, 74, 0.06);
+    color: #ffd54a;
+    border: 1px solid rgba(255,214,74,0.08);
+  }
+
+  /* Footer tweaks */
+  .site-footer {
+    background: linear-gradient(180deg,#020617,#000000);
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .footer-logo { height: 36px; }
+
   /* Subtle accent glow helper */
   .accent-glow { position: relative; }
   .accent-glow::after {

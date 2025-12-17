@@ -10,10 +10,11 @@ const AboutSection: React.FC = () => {
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto mb-12">
           {/* About Book */}
-          <h2 className="text-3xl font-display font-bold text-white flex items-center gap-3 mb-6">
-            <Activity className="text-mtn-yellow" />
-            About The Book
+          <h2 className="text-3xl font-display font-bold flex items-center gap-3 mb-6 neon-heading">
+            <Activity className="text-mtn-yellow neon-yellow-text" />
+            <span className="ml-2">About The Book</span>
           </h2>
+          <div className="prose prose-invert prose-lg text-slate-400 mb-8">
           <div className="prose prose-invert prose-lg text-slate-400 mb-8">
             <p>
               From a startup in post-apartheid South Africa to the first African company to reach 300 million subscribers, MTN’s journey mirrors the transformation of a continent.
@@ -22,18 +23,12 @@ const AboutSection: React.FC = () => {
               Told in a narrative voice that blends the rigour of history with the sweep of literary storytelling, <span className="text-white font-medium">300 Million Connections</span> traces how a single idea that Africans could build their own global technology network became one of the greatest business revolutions of the 21st century.
             </p>
             <ul className="space-y-4 mt-6 pl-4 border-l border-white/10">
-              <li className="flex gap-4">
-                <span className="text-mtn-yellow font-bold">•</span>
-                <span>300Million Connections is the definitive story of how Africa rewired its destiny through innovation, courage, and connectivity.</span>
-              </li>
-              <li className="flex gap-4">
-                 <span className="text-mtn-yellow font-bold">•</span>
-                <span>How Africa’s fintech revolution was born from a need to transact without banks.</span>
-              </li>
-              <li className="flex gap-4">
-                 <span className="text-mtn-yellow font-bold">•</span>
-                <span>The quiet building of ambitious digital infrastructure by engineers and dreamers.</span>
-              </li>
+              {['300Million Connections is the definitive story of how Africa rewired its destiny through innovation, courage, and connectivity.','How Africa’s fintech revolution was born from a need to transact without banks.','The quiet building of ambitious digital infrastructure by engineers and dreamers.'].map((t,i)=> (
+                <li key={i} className="flex gap-4 items-start">
+                  <span className="neon-yellow-text font-bold text-2xl leading-none mt-1">•</span>
+                  <span className="text-slate-300">{t}</span>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -53,15 +48,15 @@ const AboutSection: React.FC = () => {
             <div className="absolute top-0 right-0 w-32 h-32 bg-mtn-yellow/10 rounded-full blur-3xl group-hover:bg-mtn-yellow/20 transition-all"></div>
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-8 text-center neon-heading">About The Author</h2>
             <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-              <div className="p-2 rounded-full bg-gradient-to-tr from-mtn-yellow/50 via-mtn-yellow/30 to-transparent shadow-xl">
-                <div className="w-80 h-80 md:w-96 md:h-96 bg-slate-800 rounded-full flex items-center justify-center overflow-hidden transform transition-all hover:scale-105">
-                  <img src="/Auther.png" alt="Author portrait" loading="lazy" decoding="async" className="w-full h-full object-cover object-center" />
+              <div className="p-2 rounded-full author-ring">
+                <div className="w-72 h-72 md:w-84 md:h-84 bg-slate-800 rounded-full flex items-center justify-center overflow-hidden transform transition-all hover:scale-105">
+                  <img src="/Auther.png" alt="Author portrait" loading="lazy" decoding="async" className="w-full h-full object-cover object-center rounded-full" />
                 </div>
               </div>
 
               <div className="space-y-6 text-slate-300 leading-relaxed max-w-2xl">
                 <h3 className="text-3xl md:text-4xl font-semibold text-white">Dr. Charles Wirsuiy</h3>
-                <p className="mt-2 text-sm text-mtn-yellow font-medium tracking-wide">Writer · Researcher · Storyteller</p>
+                <p className="mt-2 text-sm neon-yellow-text font-medium tracking-wide">Writer · Researcher · Storyteller</p>
                 {AUTHOR_BIO.split('\n\n').map((para, idx) => (
                   <p key={idx} className={idx === 0 ? 'mt-6 text-lg' : 'text-lg'}>{para}</p>
                 ))}
