@@ -1,7 +1,5 @@
 import React, { useState, useRef } from 'react';
 
-import { startCheckout } from '../lib/checkout';
-
 const Book3D: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -11,7 +9,7 @@ const Book3D: React.FC = () => {
   const VideoCover: React.FC = () => {
     if (videoFailed) {
       return (
-        <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: "url('/cover-static.jpg')" }} />
+        <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: "url('/book%20cover.png')" }} />
       );
     }
 
@@ -90,7 +88,11 @@ const Book3D: React.FC = () => {
             PRE-ORDER<br />TODAY!
           </h3>
 
-          <p className="text-slate-500 text-sm font-medium max-w-[200px] leading-relaxed">
+          <h4 className="mt-2 text-sm md:text-lg font-display font-extrabold uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-mtn-yellow via-pink-500 to-orange-500 drop-shadow-md">
+            PLACE YOUR ORDER TODAY
+          </h4>
+
+          <p className="text-slate-500 text-sm font-medium max-w-[220px] leading-relaxed mt-2">
             Be the first to read the untold story of Africa's digital revolution.
           </p>
 
@@ -98,10 +100,7 @@ const Book3D: React.FC = () => {
             onClick={(e) => {
               e.stopPropagation();
               e.preventDefault();
-              const pricingSection = document.getElementById('pricing');
-              if (pricingSection) {
-                pricingSection.scrollIntoView({ behavior: 'smooth' });
-              }
+              const pricing = document.getElementById('pricing'); if (pricing) { pricing.scrollIntoView({ behavior: 'smooth' }); }
             }}
             className="mt-4 px-8 py-3 bg-slate-900 text-white text-xs font-bold uppercase tracking-[0.2em] hover:bg-mtn-yellow hover:text-black transition-all shadow-lg hover:shadow-mtn-yellow/50 hover:-translate-y-1"
           >

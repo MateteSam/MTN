@@ -1,7 +1,6 @@
 import React from 'react';
 import { ArrowRight, Wifi, ChevronRight } from 'lucide-react';
 import Book3D from './Book3D';
-import { startCheckout } from '../lib/checkout';
 import { HERO_CONTENT } from '../constants';
 
 interface HeroProps {
@@ -27,11 +26,11 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
 
       {/* Main Content Grid */}
       <div className="container mx-auto px-6 relative z-10 mt-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
           {/* LEFT COLUMN: 3D Book */}
           <div className="flex flex-col items-center lg:items-end order-1 lg:order-1">
-            <div className="relative w-80 h-[500px] md:w-96 md:h-[600px] flex items-center justify-center transform hover:scale-105 transition-transform duration-700">
+            <div className="relative w-80 h-[500px] md:w-96 md:h-[600px] flex items-center justify-center transform hover:scale-105 transition-transform duration-700 mr-[-20px] lg:mr-[-40px]">
               {/* Spotlight effect behind book */}
               <div className="absolute inset-0 bg-gradient-to-tr from-mtn-yellow/20 to-transparent blur-2xl rounded-full opacity-0 hover:opacity-100 transition-opacity duration-1000"></div>
               <Book3D />
@@ -44,10 +43,7 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
             <div className="flex flex-wrap items-center gap-6 pt-4">
               {/* Preorder - Tilted Yellow Button */}
               <button
-                onClick={(e) => { 
-                  e.preventDefault(); 
-                  startCheckout({ amount: '545', item_name: 'Print First Edition' });
-                }}
+                onClick={(e) => { e.preventDefault(); const pricing = document.getElementById('pricing'); if (pricing) { pricing.scrollIntoView({ behavior: 'smooth' }); } }}
                 className="relative overflow-hidden transform skew-x-[-12deg] shadow-2xl"
                 aria-label="Pre-Order Now"
               >

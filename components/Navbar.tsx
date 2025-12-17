@@ -114,7 +114,7 @@ const Navbar: React.FC = () => {
               </a>
             ))}
             <button
-              onClick={() => { setIsOpen(false); window.open('/test-payfast.html?amount=545&item_name=Print%20First%20Edition', '_blank'); }}
+              onClick={() => { setIsOpen(false); const pricing = document.getElementById('pricing'); if (pricing) { setTimeout(() => pricing.scrollIntoView({ behavior: 'smooth' }), 40); } }}
               className="bg-mtn-yellow text-black px-5 py-3 rounded-xl font-bold text-center mt-2"
             >
               PRE-ORDER NOW

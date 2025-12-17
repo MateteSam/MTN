@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { ArrowLeft, BookOpen, Share2 } from 'lucide-react';
-import { startCheckout } from '../lib/checkout';
 import { EXCERPT_TEXT, HERO_CONTENT } from '../constants';
 
 interface ExcerptPageProps {
@@ -76,11 +75,7 @@ const ExcerptPage: React.FC<ExcerptPageProps> = ({ onBack }) => {
                         <button
                             onClick={(e) => {
                                     e.preventDefault();
-                                    onBack();
-                                    setTimeout(() => {
-                                      const pricingSection = document.getElementById('pricing');
-                                      if (pricingSection) pricingSection.scrollIntoView({ behavior: 'smooth' });
-                                    }, 100);
+                                    window.location.href = '/#pricing';
                                 }}
                                 className="px-12 py-5 bg-black text-white font-sans font-bold uppercase tracking-[0.2em] hover:bg-mtn-yellow hover:text-black transition-all shadow-xl hover:translate-y-[-2px]"
                         >
