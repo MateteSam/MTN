@@ -7,25 +7,35 @@ const require = createRequire(import.meta.url);
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3001;
 
-// Attempt to auto-detect which frontend port is serving the static test pages so redirects use the correct origin.
-let FRONTEND_ORIGIN = process.env.PUBLIC_URL || `http://localhost:3000`;
+// Determine public front-end and public API URLs for sandbox E2E testing.
+// Support two env vars: PUBLIC_URL_FRONTEND (frontend URL) and PUBLIC_URL_API (API URL).
+let FRONTEND_ORIGIN = process.env.PUBLIC_URL_FRONTEND || process.env.PUBLIC_URL || `http://localhost:3000`;
+let PUBLIC_API_ORIGIN = process.env.PUBLIC_URL_API || process.env.PUBLIC_URL || `http://localhost:${PORT}`;
+
+// Auto-detect local frontend origin on typical dev ports if neither PUBLIC_URL_FRONTEND nor PUBLIC_URL is set
 (async function detectFrontendOrigin() {
   try {
-    const http = await import('http');
-    for (let p = 3000; p <= 3010; p++) {
-      const ok = await new Promise((resolve) => {
-        const req = http.request({ hostname: '127.0.0.1', port: p, path: '/test-payfast.html', method: 'HEAD', timeout: 250 }, (res) => {
-          resolve(res.statusCode && res.statusCode < 400);
+    if (!process.env.PUBLIC_URL_FRONTEND && !process.env.PUBLIC_URL) {
+      const http = await import('http');
+      for (let p = 3000; p <= 3010; p++) {
+        const ok = await new Promise((resolve) => {
+          const req = http.request({ hostname: '127.0.0.1', port: p, path: '/test-payfast.html', method: 'HEAD', timeout: 250 }, (res) => {
+            resolve(res.statusCode && res.statusCode < 400);
+          });
+          req.on('error', () => resolve(false));
+          req.on('timeout', () => { req.destroy(); resolve(false); });
+          req.end();
         });
-        req.on('error', () => resolve(false));
-        req.on('timeout', () => { req.destroy(); resolve(false); });
-        req.end();
-      });
-      if (ok) {
-        FRONTEND_ORIGIN = `http://localhost:${p}`;
-        console.log(`[dev-api] detected frontend origin ${FRONTEND_ORIGIN}`);
-        break;
+        if (ok) {
+          FRONTEND_ORIGIN = `http://localhost:${p}`;
+          console.log(`[dev-api] detected frontend origin ${FRONTEND_ORIGIN}`);
+          break;
+        }
       }
+    }
+    // Also set PUBLIC_API_ORIGIN from PUBLIC_URL_API if provided
+    if (process.env.PUBLIC_URL_API) {
+      PUBLIC_API_ORIGIN = process.env.PUBLIC_URL_API;
     }
   } catch (err) {
     // detection failed; will fall back to PUBLIC_URL or http://localhost:3000
@@ -39,8 +49,8 @@ function sendHtml(res, html, status = 200) {
 
 function buildPayfastForm({ amount = '0.00', item_name = 'Test Item', merchant_id = '10000100', merchant_key = '46f0cd694581a' } = {}) {
   // This builds a simple PayFast sandbox form for local testing.
-  const origin = process.env.PUBLIC_URL || FRONTEND_ORIGIN || `http://localhost:3000`;
-  const notifyBase = process.env.PUBLIC_URL ? process.env.PUBLIC_URL : `http://localhost:${PORT}`;
+  const origin = FRONTEND_ORIGIN || process.env.PUBLIC_URL || `http://localhost:3000`;
+  const notifyBase = PUBLIC_API_ORIGIN || process.env.PUBLIC_URL || `http://localhost:${PORT}`;
   const params = {
     merchant_id,
     merchant_key,
@@ -98,6 +108,9 @@ const server = http.createServer(async (req, res) => {
       const merchant_id = process.env.PAYFAST_MERCHANT_ID || '10000100';
       const merchant_key = process.env.PAYFAST_MERCHANT_KEY || '46f0cd694581a';
 
+      console.log('[dev-api] env PAYFAST_MERCHANT_ID:', JSON.stringify(process.env.PAYFAST_MERCHANT_ID));
+      console.log('[dev-api] env PAYFAST_MERCHANT_KEY:', JSON.stringify(process.env.PAYFAST_MERCHANT_KEY));
+
       const amountVal = (parseFloat(String(data.amount || data.total || '0')) || 0).toFixed(2);
       const itemNameVal = data.item_name || data.description || 'Test Item';
 
@@ -120,9 +133,9 @@ const server = http.createServer(async (req, res) => {
           merchant_key: merchant_key || '',
           amount: amountVal,
           item_name: itemNameVal,
-          return_url: (process.env.PUBLIC_URL || FRONTEND_ORIGIN || `http://localhost:3000`) + '/payment-success?m_payment_id=' + encodeURIComponent(m_payment_id),
-          cancel_url: (process.env.PUBLIC_URL || FRONTEND_ORIGIN || `http://localhost:3000`) + '/payment-cancel?m_payment_id=' + encodeURIComponent(m_payment_id),
-          notify_url: `http://localhost:${PORT}/api/payfast/notify`,
+          return_url: FRONTEND_ORIGIN + '/payment-success?m_payment_id=' + encodeURIComponent(m_payment_id),
+          cancel_url: FRONTEND_ORIGIN + '/payment-cancel?m_payment_id=' + encodeURIComponent(m_payment_id),
+          notify_url: (PUBLIC_API_ORIGIN || `http://localhost:${PORT}`) + '/api/payfast/notify',
           m_payment_id
         };
 
