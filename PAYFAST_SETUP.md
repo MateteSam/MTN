@@ -60,12 +60,9 @@ Tell me which of those you'd like next (I can start with ngrok + E2E test or add
 Follow these final steps to make PayFast work on the live site:
 
 1. Add the following environment variables to your Netlify site (Site settings → Build & deploy → Environment):
-   - `PAYFAST_MERCHANT_ID` = your live PayFast merchant id
-   - `PAYFAST_MERCHANT_KEY` = your live merchant key
-   - `PAYFAST_PASSPHRASE` = (optional) your passphrase, if configured
-   - `PAYFAST_MODE` = `live` (for production) or `sandbox` (for sandbox)
-   - `PAYFAST_VALIDATE_IPN` = `1` (recommended)
-   - `PUBLIC_URL` = `https://<your-site-domain>` (example: `https://300millionconnections.store`)
+- `PUBLIC_URL` = `https://<your-site-domain>` (example: `https://300millionconnections.store`)
+
+Note: This project was switched to a simple client-side PayFast shortlink embed (https://payf.st/jrpi0) per owner request. The previous server-side PayFast functions (`api/payfast/checkout` and `api/payfast/notify`) were disabled. If you prefer server-side integration later, follow the previous instructions, generate fresh credentials, and implement IPN verification server-side. If you previously stored merchant credentials in `.env.local`, they have been removed — rotate them if needed.
 2. Ensure the site domain (`https://300millionconnections.store`) is set in Netlify and DNS is configured.
 3. In your PayFast merchant dashboard (sandbox or live accordingly), configure any required return/cancel/notify URLs to point to your production URLs:
    - Return URL: `https://<your-site-domain>/payment-success`
