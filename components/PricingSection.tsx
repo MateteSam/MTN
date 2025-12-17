@@ -56,41 +56,6 @@ const PricingSection: React.FC = () => {
     }
   };
 
-  // This button triggers the real checkout flow (posts to /api/payfast/checkout and opens returned PayFast form)
-  const handleRealPreorder = async (amount: string, item_name: string) => {
-    const newWindow = window.open('', '_blank');
-    if (!newWindow) {
-      alert('Popup blocked. Please allow popups for this site or try again.');
-      return;
-    }
-
-    try {
-      const apiBase = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_BASE) ? import.meta.env.VITE_API_BASE.replace(/\/$/, '') : '';
-      const apiUrl = apiBase ? `${apiBase}/api/payfast/checkout` : '/api/payfast/checkout';
-      const resp = await fetch(apiUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount, item_name })
-      });
-
-      const html = await resp.text();
-
-      if (!resp.ok || !html) {
-        // Fallback to local test page if backend fails
-        const qs = new URLSearchParams({ amount, item_name }).toString();
-        newWindow.location = `/test-payfast.html?${qs}`;
-        return;
-      }
-
-      newWindow.document.open();
-      newWindow.document.write(html);
-      newWindow.document.close();
-    } catch (err) {
-      console.error('Real preorder failed', err);
-      const qs = new URLSearchParams({ amount, item_name }).toString();
-      newWindow.location = `/test-payfast.html?${qs}`;
-    }
-  };
   return (
     <section id="pricing" className="py-24 bg-slate-900 relative">
       <div className="container mx-auto px-6">
@@ -108,15 +73,6 @@ const PricingSection: React.FC = () => {
           ))}
         </div>
 
-        <div className="mt-8 text-center">
-          <button
-            onClick={() => handleRealPreorder('545.00', 'Print First Edition')}
-            className="inline-block bg-mtn-yellow text-black px-6 py-3 rounded-lg font-bold"
-            title="Opens PayFast sandbox (requires sandbox credentials or public URL)"
-          >
-            REAL PRE-ORDER (Sandbox)
-          </button>
-        </div>
 
         <div className="mt-16 glass-panel rounded-xl p-8 max-w-3xl mx-auto text-center border-l-4 border-mtn-yellow">
           <h3 className="text-xl font-bold text-white mb-2">Corporate & Institutional Orders</h3>
