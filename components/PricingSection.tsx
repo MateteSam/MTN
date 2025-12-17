@@ -161,6 +161,27 @@ const PricingCard: React.FC<{ tier: PricingTier }> = ({ tier }) => {
             <a href="https://payf.st/jrpi0" target="_blank" rel="noopener noreferrer" className="w-full inline-block text-center py-3 bg-mtn-yellow text-black rounded-lg font-bold">Pay via PayFast</a>
           </div>
         </div>
+      ) : tier.id === 'collector' ? (
+        <div className="w-full">
+          <div className="mb-4 text-sm text-slate-400">Collector’s Edition (R995)</div>
+          <div className="pt-3">
+            <a href="https://payf.st/4s8px" target="_blank" rel="noopener noreferrer" aria-label="Buy Collector's Edition for R995" className="w-full inline-block text-center py-3 bg-tech-purple text-white rounded-lg font-bold">{tier.cta}</a>
+          </div>
+        </div>
+      ) : tier.id === 'ebook' ? (
+        <div className="w-full">
+          <div className="mb-4 text-sm text-slate-400">eBook Edition (R199)</div>
+          <div className="pt-3">
+            <a href="https://payf.st/8ucgp" target="_blank" rel="noopener noreferrer" aria-label="Buy eBook Edition for R199" className="w-full inline-block text-center py-3 bg-slate-800 text-white rounded-lg font-bold">{tier.cta}</a>
+          </div>
+        </div>
+      ) : tier.id === 'audio' ? (
+        <div className="w-full">
+          <div className="mb-4 text-sm text-slate-400">Audiobook Edition (R199)</div>
+          <div className="pt-3">
+            <a href="https://payf.st/upho3" target="_blank" rel="noopener noreferrer" aria-label="Buy Audiobook Edition for R199" className="w-full inline-block text-center py-3 bg-orange-500 text-white rounded-lg font-bold">{tier.cta}</a>
+          </div>
+        </div>
       ) : (
         <button
           onClick={() => handlePreorder(tier)}
