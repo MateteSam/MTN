@@ -29,4 +29,4 @@ View your app in AI Studio: https://ai.studio/apps/drive/12pFt3inh1lt4MvyCe6Nw3X
 
 4. Implement IPN verification in `api/payfast/notify.js` for production: re-post the received payload to PayFast's verification endpoint and confirm the response and signature before marking orders as paid.
 
-Security: never hardcode Merchant ID/Key in source. Use environment variables as shown in `.env.example`.
+Security: never hardcode Merchant ID/Key in source or in client-side HTML/JS. Use environment variables as shown in `.env.example` and call the server-side `/api/payfast/checkout` endpoint to generate signed PayFast forms so your merchant credentials remain secret.

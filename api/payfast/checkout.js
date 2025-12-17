@@ -19,10 +19,19 @@ module.exports = async (req, res) => {
       return;
     }
 
-    // Support GET (query) or POST (JSON body)
+    // Only allow POST (JSON body) to prevent leaking or overriding merchant credentials via URLs
     const isPost = req.method && req.method.toLowerCase() === 'post';
-    const payload = isPost ? (req.body || {}) : req.query || {};
+    if (!isPost) {
+      res.status(405).send('Method Not Allowed: use POST with Content-Type application/json');
+      return;
+    }
+    const payload = req.body || {};
     const { amount = '0.00', item_name = 'Preorder' } = payload;
+
+    // Ignore any merchant credentials passed from client (don't allow overriding server env)
+    if (payload.merchant_id || payload.merchant_key || payload.passphrase) {
+      console.warn('Rejected client-supplied merchant credentials in checkout request');
+    }
 
     // Build parameters required by PayFast
     const origin = (req.headers['x-forwarded-proto'] || 'https') + '://' + (req.headers['x-forwarded-host'] || req.headers.host);
