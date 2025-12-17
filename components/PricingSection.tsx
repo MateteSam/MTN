@@ -117,11 +117,11 @@ const PricingCard: React.FC<{ tier: PricingTier }> = ({ tier }) => {
   return (
     <div className={`
       relative p-8 rounded-2xl border transition-all duration-300 flex flex-col
-      ${isCollector ? 'bg-gradient-to-b from-slate-800 to-black border-tech-purple transform hover:-translate-y-2 shadow-2xl' : 'bg-slate-950/50 border-white/10 hover:border-white/30 hover:bg-slate-900'}
+      ${isCollector ? 'bg-gradient-to-b from-slate-900 to-slate-800 border-tech-purple/40 transform hover:-translate-y-2 shadow-2xl text-white' : 'bg-slate-950/50 border-white/10 hover:border-white/30 hover:bg-slate-900'}
     `}>
       {tier.badge && (
         <div className={`absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${isCollector ? 'bg-tech-purple text-white' : 'bg-mtn-yellow text-black'}`}>
-          {tier.badge}
+          {tier.badge?.toUpperCase()}
         </div>
       )}
 
@@ -159,6 +159,29 @@ const PricingCard: React.FC<{ tier: PricingTier }> = ({ tier }) => {
           <div className="mb-4 text-sm text-slate-400">Buy a copy (R545)</div>
           <div className="pt-3">
             <a href="https://payf.st/jrpi0" target="_blank" rel="noopener noreferrer" className="w-full inline-block text-center py-3 bg-mtn-yellow text-black rounded-lg font-bold">Pay via PayFast</a>
+          </div>
+        </div>
+      ) : tier.id === 'collector' ? (
+        <div className="w-full">
+          <div className="mb-4 text-sm text-slate-300">Collector’s Edition <span className="text-white font-bold">{tier.price}</span></div>
+          <div className="pt-3">
+            <a href="https://payf.st/4s8px" target="_blank" rel="noopener noreferrer" aria-label="Buy Collector's Edition for R995" className="w-full inline-block text-center py-4 px-6 bg-gradient-to-r from-purple-600 to-purple-500 text-white rounded-2xl font-bold shadow-2xl hover:brightness-95 transition-all">
+              {tier.cta} ➜
+            </a>
+          </div>
+        </div>
+      ) : tier.id === 'ebook' ? (
+        <div className="w-full">
+          <div className="mb-4 text-sm text-slate-400">eBook Edition (R199)</div>
+          <div className="pt-3">
+            <a href="https://payf.st/8ucgp" target="_blank" rel="noopener noreferrer" aria-label="Buy eBook Edition for R199" className="w-full inline-block text-center py-3 bg-slate-800 text-white rounded-lg font-bold">{tier.cta}</a>
+          </div>
+        </div>
+      ) : tier.id === 'audio' ? (
+        <div className="w-full">
+          <div className="mb-4 text-sm text-slate-400">Audiobook Edition (R199)</div>
+          <div className="pt-3">
+            <a href="https://payf.st/upho3" target="_blank" rel="noopener noreferrer" aria-label="Buy Audiobook Edition for R199" className="w-full inline-block text-center py-3 bg-orange-500 text-white rounded-lg font-bold">{tier.cta}</a>
           </div>
         </div>
       ) : (

@@ -9,7 +9,7 @@ import ExcerptPage from './components/ExcerptPage';
 import AuthorPage from './components/AuthorPage';
 
 function App() {
-  const [view, setView] = useState<'home' | 'excerpt'>('home');
+  const [view, setView] = useState<'home' | 'excerpt' | 'author'>('home');
 
   React.useEffect(() => {
     const handler = () => setView('author');
