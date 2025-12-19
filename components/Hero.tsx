@@ -20,7 +20,8 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
           <source
             media="(min-width: 768px)"
             type="image/png"
-            srcSet={`/banner.png?v=c7d8d92 1x, /banner@2x.png?v=c7d8d92 2x`}
+            srcSet={`/banner@3x.png?v=f36c8da 5088w, /banner@2x.png?v=f36c8da 3392w, /banner.png?v=f36c8da 1696w`}
+            sizes="100vw"
           />
 
           {/* Mobile: prefer the provided mobile image (AVIF/WebP for better size) */}
