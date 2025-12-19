@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { ArrowRight, Wifi, ChevronRight } from 'lucide-react';
 import Book3D from './Book3D';
 import { HERO_CONTENT } from '../constants';
@@ -8,16 +8,7 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
-  const bannerRef = useRef<HTMLImageElement | null>(null);
-  const [bannerInfo, setBannerInfo] = useState<{ src?: string; w?: number; h?: number } | null>(null);
-
-  const onBannerLoad = () => {
-    const img = bannerRef.current;
-    if (img) {
-      setBannerInfo({ src: img.currentSrc || img.src, w: img.naturalWidth, h: img.naturalHeight });
-      console.log('Banner loaded:', img.currentSrc || img.src, img.naturalWidth, 'x', img.naturalHeight);
-    }
-  };
+  
 
   return (
     <section className="relative min-h-screen flex flex-col items-center pt-0 pb-20 overflow-hidden bg-[#020617]">
@@ -45,8 +36,6 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
           />
 
           <img
-            ref={bannerRef}
-            onLoad={onBannerLoad}
             src="/banner@3x.png?v=5261a24"
             alt="300 Million Connections Banner"
             loading="eager"
