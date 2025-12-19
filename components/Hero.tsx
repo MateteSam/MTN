@@ -15,15 +15,38 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
       {/* Banner at the very top, single image fitting perfectly */}
       <div className="w-full relative flex items-center justify-center rounded-none overflow-hidden border-b border-white/10 shadow-2xl bg-black">
         <picture>
-          {/* Future: add smaller banner variant with <source media="(max-width: 640px)" srcSet="/banner-sm.png" /> */}
+          {/* Desktop: AVIF > WebP > PNG (1x,2x) */}
+          <source
+            media="(min-width: 768px)"
+            type="image/avif"
+            srcSet={`/banner.avif?v=c7d8d92 1x, /banner@2x.avif?v=c7d8d92 2x`}
+          />
+          <source
+            media="(min-width: 768px)"
+            type="image/webp"
+            srcSet={`/banner.webp?v=c7d8d92 1x, /banner@2x.webp?v=c7d8d92 2x`}
+          />
+
+          {/* Mobile: prefer the provided mobile image */}
+          <source
+            media="(max-width: 767px)"
+            type="image/avif"
+            srcSet={`/mobile.avif?v=c7d8d92 1x, /mobile@2x.avif?v=c7d8d92 2x`}
+          />
+          <source
+            media="(max-width: 767px)"
+            type="image/webp"
+            srcSet={`/mobile.webp?v=c7d8d92 1x, /mobile@2x.webp?v=c7d8d92 2x`}
+          />
+
           <img
             src="/banner.png?v=c7d8d92"
             alt="300 Million Connections Banner"
-            loading="lazy"
+            loading="eager"
             decoding="async"
             fetchPriority="high"
-            width={1920}
-            height={1080}
+            width={1696}
+            height={608}
             sizes="100vw"
             className="w-full h-auto max-h-[50vh] sm:max-h-[60vh] md:max-h-[70vh] object-contain"
           />
