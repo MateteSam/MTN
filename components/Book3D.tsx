@@ -105,7 +105,7 @@ const Book3D: React.FC = () => {
             aria-label="Pre-order now - scroll to pricing"
             className="mt-3 transform -skew-x-6 hover:skew-x-0 hover:scale-105 transition-all duration-300 focus-visible:focus-ring"
           >
-            <span className="btn-primary inline-block px-7 md:px-8 py-3 text-sm md:text-base font-bold uppercase tracking-[0.12em] shadow-lg rounded-md transform skew-x-6 hover:skew-x-0">
+            <span className="inline-block px-7 md:px-8 py-3 text-sm md:text-base font-bold uppercase tracking-[0.12em] shadow-lg rounded-md transform skew-x-6 hover:skew-x-0" style={{ background: '#ffd54a', color: '#000' }}>
               Pre-Order Now
             </span>
           </button>

@@ -76,7 +76,8 @@ const Navbar: React.FC = () => {
                   pricingSection.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="bg-mtn-yellow text-black px-5 py-2 rounded-full font-bold text-sm hover:bg-yellow-300 transition-transform hover:scale-105"
+              aria-label="Pre-order: scroll to pricing"
+              className="btn-primary focus-visible:focus-ring px-4 py-2 text-sm rounded-full"
             >
               PRE-ORDER
             </button>
@@ -115,7 +116,8 @@ const Navbar: React.FC = () => {
             ))}
             <button
               onClick={() => { setIsOpen(false); const pricing = document.getElementById('pricing'); if (pricing) { setTimeout(() => pricing.scrollIntoView({ behavior: 'smooth' }), 40); } }}
-              className="bg-mtn-yellow text-black px-5 py-3 rounded-xl font-bold text-center mt-2"
+              aria-label="Pre-order: scroll to pricing"
+              className="btn-primary focus-visible:focus-ring w-full text-center mt-2"
             >
               PRE-ORDER NOW
             </button>

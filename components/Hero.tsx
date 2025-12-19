@@ -14,15 +14,22 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
 
       {/* Banner at the very top, single image fitting perfectly */}
       <div className="w-full relative flex items-center justify-center rounded-none overflow-hidden border-b border-white/10 shadow-2xl bg-black">
-        <img
-          src="/banner.png"
-          alt="300 Million Connections Banner"
-          className="w-full h-auto max-h-[50vh] md:max-h-[70vh] object-contain"
-        />
-        {/* Subtle gradient fader to blend banner into hero and improve readability */}
+        <picture>
+          {/* Future: add smaller banner variant with <source media="(max-width: 640px)" srcSet="/banner-sm.png" /> */}
+          <img
+            src="/banner.png"
+            alt="300 Million Connections Banner"
+            loading="lazy"
+            decoding="async"
+            width={1920}
+            height={1080}
+            className="w-full h-auto max-h-[50vh] sm:max-h-[60vh] md:max-h-[70vh] object-contain"
+          />
+        </picture>
+        {/* Subtle gradient fader to blend banner into hero and improve readability; stronger on small screens */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent to-black/60"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent to-black/80 sm:to-black/70 md:to-black/60 backdrop-blur-[1px]"
         />
       </div>
 
@@ -46,13 +53,11 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
               {/* Preorder - Tilted Yellow Button */}
               <button
                 onClick={(e) => { e.preventDefault(); const pricing = document.getElementById('pricing'); if (pricing) { pricing.scrollIntoView({ behavior: 'smooth' }); } }}
-                className="relative overflow-hidden  shadow-2xl bg-[#ffd54a] text-black border-2 border-[#ffd54a] hover:bg-black hover:text-[#ffd54a] transition-colors"
-                aria-label="Pre-Order Now"
+                aria-label="Pre-order: scroll to pricing"
+                className="btn-primary focus-visible:focus-ring inline-flex items-center gap-3 px-8 py-3 font-bold text-sm md:text-base"
               >
-                <div className="px-10 py-4 text-black font-bold text-lg flex items-center gap-3">
-                  <span >PRE-ORDER NOW</span>
-                  <ChevronRight className="w-5 h-5 " />
-                </div>
+                <span>PRE-ORDER NOW</span>
+                <ChevronRight className="w-5 h-5" />
               </button>
 
               <div className="flex items-center gap-2 text-slate-500 text-xs uppercase tracking-widest">

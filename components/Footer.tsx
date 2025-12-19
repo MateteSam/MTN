@@ -24,8 +24,8 @@ const Footer: React.FC = () => {
                Pre-orders processed immediately. Full refunds available before shipping if publication date changes.
              </p>
              <div className="flex items-center gap-2 text-mtn-yellow text-sm">
-                <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                Secure Checkout
+                <span className="w-2 h-2 bg-green-500 rounded-full" aria-hidden="true"></span>
+                <span>Secure Checkout</span>
              </div>
           </div>
 

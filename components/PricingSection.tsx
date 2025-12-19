@@ -158,14 +158,14 @@ const PricingCard: React.FC<{ tier: PricingTier }> = ({ tier }) => {
         <div className="w-full">
           <div className="mb-4 text-sm text-slate-400">Buy a copy (R545)</div>
           <div className="pt-3">
-            <a href="https://payf.st/jrpi0" target="_blank" rel="noopener noreferrer" className="w-full inline-block text-center py-3 bg-mtn-yellow text-black rounded-lg font-bold">Pay via PayFast</a>
+            <a href="https://payf.st/jrpi0" target="_blank" rel="noopener noreferrer" aria-label="Pay via PayFast for R545" className="w-full inline-block text-center py-3 rounded-lg font-bold btn-primary">Pay via PayFast</a>
           </div>
         </div>
       ) : tier.id === 'collector' ? (
         <div className="w-full">
           <div className="mb-4 text-sm text-slate-300">Collector’s Edition <span className="text-white font-bold">{tier.price}</span></div>
           <div className="pt-3">
-            <a href="https://payf.st/4s8px" target="_blank" rel="noopener noreferrer" aria-label="Buy Collector's Edition for R995" className="w-full inline-block text-center py-4 px-6 bg-gradient-to-r from-purple-600 to-purple-500 text-white rounded-2xl font-bold shadow-2xl hover:brightness-95 transition-all">
+            <a href="https://payf.st/4s8px" target="_blank" rel="noopener noreferrer" aria-label="Buy Collector's Edition for R995" className="w-full inline-block text-center py-4 px-6 bg-gradient-to-r from-purple-600 to-purple-500 text-white rounded-2xl font-bold shadow-2xl hover:brightness-95 transition-all focus-visible:focus-ring">
               {tier.cta} ➜
             </a>
           </div>
@@ -187,7 +187,8 @@ const PricingCard: React.FC<{ tier: PricingTier }> = ({ tier }) => {
       ) : (
         <button
           onClick={() => handlePreorder(tier)}
-          className={`w-full py-3 rounded-lg font-bold text-sm transition-colors ${btnColorMap[tier.color]}`}>
+          aria-label={`Pre-order ${tier.title} for ${tier.price}`}
+          className={`w-full py-3 rounded-lg font-bold text-sm transition-colors btn-primary focus-visible:focus-ring ${btnColorMap[tier.color]}`}>
           {tier.cta} ➜
         </button>
       )}
