@@ -84,15 +84,15 @@ const Book3D: React.FC = () => {
             <span className="text-3xl filter drop-shadow-md">🚀</span>
           </div>
 
-          <h3 className="text-4xl md:text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-b from-mtn-yellow to-orange-600 tracking-tighter drop-shadow-sm leading-[1.1]">
+          <h3 className="text-3xl md:text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-b from-mtn-yellow to-orange-600 tracking-tighter drop-shadow-sm leading-[1.05]">
             PRE-ORDER<br />TODAY!
           </h3>
 
-          <h4 className="mt-2 text-sm md:text-lg font-display font-extrabold uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-mtn-yellow via-pink-500 to-orange-500 drop-shadow-md">
+          <h4 className="mt-3 text-2xl md:text-3xl font-display font-extrabold uppercase tracking-wide text-slate-900 drop-shadow-sm leading-tight whitespace-normal break-words">
             PLACE YOUR ORDER TODAY
           </h4>
 
-          <p className="text-slate-500 text-sm font-medium max-w-[220px] leading-relaxed mt-2">
+          <p className="text-slate-600 text-sm md:text-sm font-medium max-w-[260px] leading-relaxed mt-2">
             Be the first to read the untold story of Africa's digital revolution.
           </p>
 
@@ -102,9 +102,11 @@ const Book3D: React.FC = () => {
               e.preventDefault();
               const pricing = document.getElementById('pricing'); if (pricing) { pricing.scrollIntoView({ behavior: 'smooth' }); }
             }}
-            className="mt-4 px-8 py-3 bg-slate-900 text-white text-xs font-bold uppercase tracking-[0.2em] hover:bg-mtn-yellow hover:text-black transition-all shadow-lg hover:shadow-mtn-yellow/50 hover:-translate-y-1"
+            className="mt-4 transform -skew-x-6 hover:skew-x-0 hover:scale-105 transition-all duration-300"
           >
-            Pre-Order here
+            <span className="inline-block px-7 md:px-8 py-3 bg-mtn-yellow text-black text-sm md:text-base font-bold uppercase tracking-[0.12em] shadow-lg rounded-md transform skew-x-6 hover:skew-x-0">
+              Pre-Order Now
+            </span>
           </button>
         </div>
       </div>
