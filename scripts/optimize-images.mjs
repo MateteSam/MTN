@@ -29,8 +29,13 @@ async function processImage(srcPath, baseName, sizes) {
     .resize({ width: w2 })
     .webp({ quality: 70 })
     .toFile(`public/${baseName}@2x.webp`);
+  // Also produce a lossless 2x PNG so desktop can use an uncompressed fallback if needed
+  await sharp(srcPath)
+    .resize({ width: w2 })
+    .png({ compressionLevel: 9 })
+    .toFile(`public/${baseName}@2x.png`);
 
-  console.log(`Wrote public/${baseName}.{avif,webp,@2x.*}`);
+  console.log(`Wrote public/${baseName}.{avif,webp,@2x.*} and public/${baseName}@2x.png`);
 }
 
 (async () => {

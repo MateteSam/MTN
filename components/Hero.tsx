@@ -16,18 +16,14 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
       <div className="w-full relative flex items-center justify-center rounded-none overflow-hidden border-b border-white/10 shadow-2xl bg-black">
         <picture>
           {/* Desktop: AVIF > WebP > PNG (1x,2x) */}
+            {/* Desktop: use uncompressed PNG (1x + 2x) to avoid any lossy compression blur */}
           <source
             media="(min-width: 768px)"
-            type="image/avif"
-            srcSet={`/banner.avif?v=c7d8d92 1x, /banner@2x.avif?v=c7d8d92 2x`}
-          />
-          <source
-            media="(min-width: 768px)"
-            type="image/webp"
-            srcSet={`/banner.webp?v=c7d8d92 1x, /banner@2x.webp?v=c7d8d92 2x`}
+            type="image/png"
+            srcSet={`/banner.png?v=c7d8d92 1x, /banner@2x.png?v=c7d8d92 2x`}
           />
 
-          {/* Mobile: prefer the provided mobile image */}
+          {/* Mobile: prefer the provided mobile image (AVIF/WebP for better size) */}
           <source
             media="(max-width: 767px)"
             type="image/avif"
