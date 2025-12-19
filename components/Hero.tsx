@@ -68,7 +68,7 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
         {/* Subtle gradient fader to blend banner into hero and improve readability; stronger on small screens */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent to-black/80 sm:to-black/70 md:to-black/60 backdrop-blur-[1px]"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent to-black/80 sm:to-black/70 md:to-black/60"
         />
       </div>
 
