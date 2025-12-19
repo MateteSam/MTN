@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AboutSection from './components/AboutSection';
 import ExcerptSection from './components/ExcerptSection';
+import BetweenAuthorPreview from './components/BetweenAuthorPreview';
 import PricingSection from './components/PricingSection';
 import Footer from './components/Footer';
 import ExcerptPage from './components/ExcerptPage';
@@ -30,6 +31,8 @@ function App() {
       <Navbar />
       <Hero onReadExcerpt={() => setView('excerpt')} />
       <AboutSection />
+      {/* Smart placement: image between Author and Exclusive Preview */}
+      <BetweenAuthorPreview />
       <ExcerptSection onReadExcerpt={() => setView('excerpt')} />
       <PricingSection />
       <Footer />

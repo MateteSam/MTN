@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { ArrowRight, Wifi, ChevronRight } from 'lucide-react';
 import Book3D from './Book3D';
 import { HERO_CONTENT } from '../constants';
@@ -8,6 +8,16 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
+  const bannerRef = useRef<HTMLImageElement | null>(null);
+  const [bannerInfo, setBannerInfo] = useState<{ src?: string; w?: number; h?: number } | null>(null);
+
+  const onBannerLoad = () => {
+    const img = bannerRef.current;
+    if (img) {
+      setBannerInfo({ src: img.currentSrc || img.src, w: img.naturalWidth, h: img.naturalHeight });
+      console.log('Banner loaded:', img.currentSrc || img.src, img.naturalWidth, 'x', img.naturalHeight);
+    }
+  };
 
   return (
     <section className="relative min-h-screen flex flex-col items-center pt-0 pb-20 overflow-hidden bg-[#020617]">
@@ -20,7 +30,7 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
           <source
             media="(min-width: 768px)"
             type="image/png"
-            srcSet={`/banner@3x.png?v=f36c8da 5088w, /banner@2x.png?v=f36c8da 3392w, /banner.png?v=f36c8da 1696w`}
+            srcSet={`/banner@3x.png?v=f20e6d2 5760w, /banner@2x.png?v=f20e6d2 3840w, /banner.png?v=f20e6d2 3099w`}
             sizes="100vw"
           />
 
@@ -28,25 +38,35 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
           <source
             media="(max-width: 767px)"
             type="image/avif"
-            srcSet={`/mobile.avif?v=c7d8d92 1x, /mobile@2x.avif?v=c7d8d92 2x`}
+            srcSet={`/mobile.avif?v=f20e6d2 1x, /mobile@2x.avif?v=f20e6d2 2x, /mobile@3x.avif?v=f20e6d2 3x`}
           />
           <source
             media="(max-width: 767px)"
             type="image/webp"
-            srcSet={`/mobile.webp?v=c7d8d92 1x, /mobile@2x.webp?v=c7d8d92 2x`}
+            srcSet={`/mobile.webp?v=f20e6d2 1x, /mobile@2x.webp?v=f20e6d2 2x, /mobile@3x.webp?v=f20e6d2 3x`}
           />
 
           <img
-            src="/banner.png?v=c7d8d92"
+            ref={bannerRef}
+            onLoad={onBannerLoad}
+            src="/banner.png?v=f20e6d2"
             alt="300 Million Connections Banner"
             loading="eager"
             decoding="async"
             fetchPriority="high"
-            width={1696}
-            height={608}
+            width={3099}
+            height={1122}
             sizes="100vw"
             className="w-full h-auto max-h-[50vh] sm:max-h-[60vh] md:max-h-[70vh] object-contain"
           />
+
+          {/* Debug overlay: shows which image file was selected and its natural size. Remove when done. */}
+          {bannerInfo && (
+            <div className="pointer-events-none absolute top-3 right-3 bg-black/60 text-white text-xs px-2 py-1 rounded-md z-50">
+              <div className="whitespace-nowrap">{bannerInfo.src}</div>
+              <div className="opacity-80">{bannerInfo.w} × {bannerInfo.h}</div>
+            </div>
+          )}
         </picture>
         {/* Subtle gradient fader to blend banner into hero and improve readability; stronger on small screens */}
         <div
