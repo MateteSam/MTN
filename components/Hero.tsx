@@ -13,11 +13,16 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
     <section className="relative min-h-screen flex flex-col items-center pt-0 pb-20 overflow-hidden bg-[#020617]">
 
       {/* Banner at the very top, single image fitting perfectly */}
-      <div className="w-full flex items-center justify-center rounded-none overflow-hidden border-b border-white/10 shadow-2xl bg-black">
+      <div className="w-full relative flex items-center justify-center rounded-none overflow-hidden border-b border-white/10 shadow-2xl bg-black">
         <img
           src="/banner.png"
           alt="300 Million Connections Banner"
           className="w-full h-auto max-h-[50vh] md:max-h-[70vh] object-contain"
+        />
+        {/* Subtle gradient fader to blend banner into hero and improve readability */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent to-black/60"
         />
       </div>
 
