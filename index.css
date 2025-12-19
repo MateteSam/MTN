@@ -1,10 +1,8 @@
 /* Tailwind entry + minimal fallbacks
    This file is processed by PostCSS/Tailwind in dev and production. It replaces the CDN usage.
-*/
+ */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /* Preserve minimal global styles (keep in sync with index.html custom <style> where needed) */
 html, body {
@@ -15,7 +13,11 @@ html, body {
 @layer components {
   /* Soft glass panels with a neon accent */
   .glass-panel {
-    @apply bg-slate-900/60 backdrop-blur-md border border-white/5 rounded-2xl;
+    background-color: rgba(15,23,42,0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 1rem;
+    border: 1px solid rgba(255,255,255,0.05);
     box-shadow: 0 8px 30px rgba(2,6,23,0.6);
     position: relative;
   }
@@ -27,7 +29,8 @@ html, body {
   }
 
   .neon-cta {
-    @apply rounded-2xl font-bold;
+    border-radius: 1rem;
+    font-weight: 700;
     background: linear-gradient(90deg,#7c3aed,#9f7aea);
     box-shadow: 0 12px 40px rgba(124,58,237,0.18);
     transition: filter .18s ease, transform .12s ease;
@@ -39,7 +42,7 @@ html, body {
     -webkit-background-clip: text;
     background-clip: text;
     background-image: linear-gradient(180deg,#f59e0b,#fb7185);
-    @apply font-display font-extrabold;
+    @apply font-bold;
   }
 
   /* Neon yellow text utility */
@@ -65,7 +68,7 @@ html, body {
 
   /* Excerpt read CTA */
   .excerpt-cta {
-    @apply inline-flex items-center gap-3 px-4 py-2 rounded-full text-sm font-bold text-white;
+    @apply inline-flex items-center gap-3 px-4 py-2 rounded-full text-sm font-bold text-[#ffd54a];
     background: linear-gradient(90deg,#6d28d9,#9f7aea);
     box-shadow: 0 12px 40px rgba(127,63,249,0.12);
   }
@@ -101,4 +104,3 @@ html, body {
     z-index: 0;
   }
 }
-

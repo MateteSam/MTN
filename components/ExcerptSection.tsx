@@ -16,7 +16,7 @@ const ExcerptSection: React.FC<ExcerptSectionProps> = ({ onReadExcerpt }) => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <span className="small-label block mb-4">Exclusive Preview</span>
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6">Excerpt from: 300 Million Connections: MTN & the African Tech Revolution</h2>
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-[#ffd54a] mb-6">Excerpt from: 300 Million Connections: MTN & the African Tech Revolution</h2>
           </div>
 
           <div className="glass-panel p-8 md:p-16 rounded-3xl border-t border-white/10 shadow-2xl relative neon-outline">
@@ -43,7 +43,7 @@ const ExcerptSection: React.FC<ExcerptSectionProps> = ({ onReadExcerpt }) => {
               ))}
             </div>
 
-            <div className="mt-8 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="mt-8 pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-4" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
               <p className="text-xs text-slate-500 uppercase tracking-widest">
                 Excerpt from Chapter 3 • © 2026 Dr. Charles Wirsuiy Snr.
               </p>

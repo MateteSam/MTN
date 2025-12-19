@@ -10,10 +10,10 @@ const Footer: React.FC = () => {
           
           {/* Brand */}
           <div className="flex items-center gap-4">
-            <img src="/logo.png" alt="site logo" className="footer-logo" />
+            <img src="/logo.png" alt="site logo" className="h-8 w-auto" />
             <div>
-              <h4 className="text-white font-bold">300 Million Connections</h4>
-              <p className="text-sm text-slate-400">Documenting the making of modern Africa through the stories of its builders.</p>
+              <h4 className="text-white font-bold">WCCCS Publishing</h4>
+              <p className="text-sm text-slate-400">300 Million Connections</p>
             </div>
           </div>
 
@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+        <div className="border-t pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
           <p>© 2026 Dr. Charles Wirsuiy Snr. All Rights Reserved.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>

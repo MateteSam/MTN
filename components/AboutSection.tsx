@@ -31,6 +31,7 @@ const AboutSection: React.FC = () => {
               ))}
             </ul>
           </div>
+        </div>
 
           {/* Quote associated with the excerpt */}
           <div className="mb-12 text-center">

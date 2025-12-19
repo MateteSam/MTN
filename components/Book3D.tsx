@@ -110,7 +110,7 @@ const Book3D: React.FC = () => {
       </div>
 
       {/* SPINE */}
-      <div className="absolute top-0 bottom-0 left-0 w-[40px] bg-[#0a1120] flex items-center justify-center z-0 shadow-inner border-l border-white/5" style={{ transform: 'rotateY(-90deg) translateX(-20px)' }}>
+      <div className="absolute top-0 bottom-0 left-0 w-[40px] bg-[#0a1120] flex items-center justify-center z-0 shadow-inner border-l" style={{ transform: 'rotateY(-90deg) translateX(-20px)', borderLeft: '1px solid rgba(255,255,255,0.05)' }}>
         <span className="text-mtn-yellow font-bold text-xs tracking-[0.2em] rotate-90 whitespace-nowrap opacity-90">300 MILLION CONNECTIONS</span>
       </div>
 

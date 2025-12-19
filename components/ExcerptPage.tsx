@@ -50,7 +50,7 @@ const ExcerptPage: React.FC<ExcerptPageProps> = ({ onBack }) => {
                     <h1 className="text-4xl md:text-6xl font-display font-bold text-slate-900 mb-4 tracking-tight">
                         {HERO_CONTENT.section}
                     </h1>
-                    <p className="text-lg md:text-xl text-slate-500 italic font-medium">
+                    <p className="text-lg md:text-xl text-[#ffd54a] italic font-medium">
                         Excerpt from "{HERO_CONTENT.subheadline}"
                     </p>
                 </header>
