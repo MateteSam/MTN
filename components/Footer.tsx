@@ -3,10 +3,10 @@ import { Mail } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="site-footer text-slate-500 py-16">
+    <footer className="site-footer text-slate-500 py-12">
       <div className="container mx-auto px-6">
         
-        <div className="grid md:grid-cols-3 gap-12 mb-16 items-center">
+        <div className="grid md:grid-cols-3 gap-8 mb-12 items-center">
           
           {/* Brand */}
           <div className="flex items-center gap-4">
@@ -24,8 +24,8 @@ const Footer: React.FC = () => {
                Pre-orders processed immediately. Full refunds available before shipping if publication date changes.
              </p>
              <div className="flex items-center gap-2 text-mtn-yellow text-sm">
-                <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                Secure Checkout
+                <span className="w-2 h-2 bg-green-500 rounded-full" aria-hidden="true"></span>
+                <span>Secure Checkout</span>
              </div>
           </div>
 

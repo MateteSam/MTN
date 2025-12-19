@@ -77,7 +77,8 @@ const ExcerptPage: React.FC<ExcerptPageProps> = ({ onBack }) => {
                                     e.preventDefault();
                                     window.location.href = '/#pricing';
                                 }}
-                                className="px-12 py-5 bg-black text-white font-sans font-bold uppercase tracking-[0.2em] hover:bg-mtn-yellow hover:text-black transition-all shadow-xl hover:translate-y-[-2px]"
+                                aria-label="Pre-order: scroll to pricing"
+                                className="btn-primary focus-visible:focus-ring px-10 py-4 font-bold text-sm uppercase tracking-[0.12em] shadow-xl"
                         >
                             PRE-ORDER NOW
                         </button>

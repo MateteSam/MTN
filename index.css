@@ -10,6 +10,22 @@ html, body {
   padding: 0;
 }
 
+@layer base {
+  :focus-visible {
+    outline: 0;
+    box-shadow: 0 0 0 4px rgba(255,213,74,0.12), 0 0 0 1px rgba(255,213,74,0.06) inset;
+    border-radius: 0.5rem;
+  }
+
+  button, a {
+    transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+}
+
 @layer components {
   /* Soft glass panels with a neon accent */
   .glass-panel {
@@ -27,6 +43,36 @@ html, body {
     background: linear-gradient(90deg,#7c3aed,#a78bfa);
     box-shadow: 0 10px 30px rgba(124,58,237,0.18), 0 0 18px rgba(124,58,237,0.12) inset;
   }
+
+  /* Button utilities */
+  .btn { @apply inline-block font-bold rounded-xl; }
+  .btn-primary {
+    @apply inline-block font-bold rounded-xl px-6 py-3 text-black;
+    background: #ffd54a;
+    box-shadow: 0 14px 48px rgba(255,213,74,0.12);
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .btn-primary:hover { transform: translateY(-3px); }
+
+  .btn-outline {
+    @apply inline-block font-bold rounded-xl px-5 py-2 border border-white/10 text-white/90 bg-transparent;
+  }
+  .btn:focus { outline: none; }
+  .btn:focus-visible { box-shadow: 0 0 0 4px rgba(255,213,74,0.12); border-radius: .5rem; }
+
+  .focus-ring {
+    box-shadow: 0 0 0 4px rgba(255,213,74,0.12), 0 0 0 1px rgba(255,213,74,0.06) inset;
+    border-radius: .5rem;
+  }
+
+  .neon-cta {
+    border-radius: 1rem;
+    font-weight: 700;
+    background: linear-gradient(90deg,#7c3aed,#9f7aea);
+    box-shadow: 0 12px 40px rgba(124,58,237,0.18);
+    transition: filter .18s ease, transform .12s ease;
+  }
+  .neon-cta:hover { filter: brightness(.98) saturate(1.05); transform: translateY(-3px); }
 
   .neon-cta {
     border-radius: 1rem;
