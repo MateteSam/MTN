@@ -29,8 +29,28 @@ async function processImage(srcPath, baseName, sizes) {
     .resize({ width: w2 })
     .webp({ quality: 70 })
     .toFile(`public/${baseName}@2x.webp`);
+  // Also produce a lossless 2x PNG so desktop can use an uncompressed fallback if needed
+  await sharp(srcPath)
+    .resize({ width: w2 })
+    .png({ compressionLevel: 0 })
+    .toFile(`public/${baseName}@2x.png`);
 
-  console.log(`Wrote public/${baseName}.{avif,webp,@2x.*}`);
+  // 3x for high-DPR / large displays (cap to 5760 to avoid enormous files)
+  const w3 = Math.min(width * 3, 5760);
+  await sharp(srcPath)
+    .resize({ width: w3 })
+    .avif({ quality: 45 })
+    .toFile(`public/${baseName}@3x.avif`);
+  await sharp(srcPath)
+    .resize({ width: w3 })
+    .webp({ quality: 60 })
+    .toFile(`public/${baseName}@3x.webp`);
+  await sharp(srcPath)
+    .resize({ width: w3 })
+    .png({ compressionLevel: 0 })
+    .toFile(`public/${baseName}@3x.png`);
+
+  console.log(`Wrote public/${baseName}.{avif,webp,@2x.*} and public/${baseName}@2x.png and @3x variants`);
 }
 
 (async () => {

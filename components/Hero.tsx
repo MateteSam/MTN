@@ -8,6 +8,7 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
+  
 
   return (
     <section className="relative min-h-screen flex flex-col items-center pt-0 pb-20 overflow-hidden bg-[#020617]">
@@ -15,46 +16,42 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
       {/* Banner at the very top, single image fitting perfectly */}
       <div className="w-full relative flex items-center justify-center rounded-none overflow-hidden border-b border-white/10 shadow-2xl bg-black">
         <picture>
-          {/* Desktop: AVIF > WebP > PNG (1x,2x) */}
+          {/* Desktop: Force highest res PNG to eliminate any compression blur */}
           <source
             media="(min-width: 768px)"
-            type="image/avif"
-            srcSet={`/banner.avif?v=c7d8d92 1x, /banner@2x.avif?v=c7d8d92 2x`}
-          />
-          <source
-            media="(min-width: 768px)"
-            type="image/webp"
-            srcSet={`/banner.webp?v=c7d8d92 1x, /banner@2x.webp?v=c7d8d92 2x`}
+            type="image/png"
+            srcSet={`/banner@3x.png?v=5261a24`}
           />
 
-          {/* Mobile: prefer the provided mobile image */}
+          {/* Mobile: prefer the provided mobile image (AVIF/WebP for better size) */}
           <source
             media="(max-width: 767px)"
             type="image/avif"
-            srcSet={`/mobile.avif?v=c7d8d92 1x, /mobile@2x.avif?v=c7d8d92 2x`}
+            srcSet={`/mobile.avif?v=5261a24 1x, /mobile@2x.avif?v=5261a24 2x, /mobile@3x.avif?v=5261a24 3x`}
           />
           <source
             media="(max-width: 767px)"
             type="image/webp"
-            srcSet={`/mobile.webp?v=c7d8d92 1x, /mobile@2x.webp?v=c7d8d92 2x`}
+            srcSet={`/mobile.webp?v=5261a24 1x, /mobile@2x.webp?v=5261a24 2x, /mobile@3x.webp?v=5261a24 3x`}
           />
 
           <img
-            src="/banner.png?v=c7d8d92"
+            src="/banner@3x.png?v=5261a24"
             alt="300 Million Connections Banner"
             loading="eager"
             decoding="async"
             fetchPriority="high"
-            width={1696}
-            height={608}
-            sizes="100vw"
-            className="w-full h-auto max-h-[50vh] sm:max-h-[60vh] md:max-h-[70vh] object-contain"
+            width={5760}
+            height={2088}
+            className="w-full h-auto object-contain"
           />
+
+          {/* debug overlay removed for production */}
         </picture>
         {/* Subtle gradient fader to blend banner into hero and improve readability; stronger on small screens */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent to-black/80 sm:to-black/70 md:to-black/60 backdrop-blur-[1px]"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent to-black/80 sm:to-black/70 md:to-black/60"
         />
       </div>
 
