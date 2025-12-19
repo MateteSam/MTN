@@ -57,13 +57,7 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
             className="w-full h-auto object-contain"
           />
 
-          {/* Debug overlay: shows which image file was selected and its natural size. Remove when done. */}
-          {bannerInfo && (
-            <div className="pointer-events-none absolute top-3 right-3 bg-black/60 text-white text-xs px-2 py-1 rounded-md z-50">
-              <div className="whitespace-nowrap">{bannerInfo.src}</div>
-              <div className="opacity-80">{bannerInfo.w} × {bannerInfo.h}</div>
-            </div>
-          )}
+          {/* debug overlay removed for production */}
         </picture>
         {/* Subtle gradient fader to blend banner into hero and improve readability; stronger on small screens */}
         <div
