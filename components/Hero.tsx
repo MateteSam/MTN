@@ -13,14 +13,11 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
     <section className="relative min-h-screen flex flex-col items-center pt-0 pb-20 overflow-hidden bg-[#020617]">
 
       {/* Banner at the very top, single image fitting perfectly */}
-      <div
-        className="w-full relative rounded-none overflow-hidden border-b border-white/10 shadow-2xl bg-black"
-        style={{ aspectRatio: '16 / 9', maxHeight: '70vh' }}
-      >
+      <div className="w-full flex items-center justify-center rounded-none overflow-hidden border-b border-white/10 shadow-2xl bg-black">
         <img
           src="/banner.png"
           alt="300 Million Connections Banner"
-          className="absolute inset-0 w-full h-full object-contain"
+          className="w-full h-auto max-h-[50vh] md:max-h-[70vh] object-contain"
         />
       </div>
 
