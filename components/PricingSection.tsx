@@ -120,7 +120,7 @@ const PricingCard: React.FC<{ tier: PricingTier }> = ({ tier }) => {
       ${isCollector ? 'bg-gradient-to-b from-slate-900 to-slate-800 border-tech-purple/40 transform hover:-translate-y-2 shadow-2xl text-white' : 'bg-slate-950/50 border-white/10 hover:border-white/30 hover:bg-slate-900'}
     `}>
       {tier.badge && (
-        <div className={`absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${isCollector ? 'bg-tech-purple text-white' : 'bg-mtn-yellow text-black'}`}>
+        <div className={`absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${isCollector ? 'purple-badge' : 'bg-mtn-yellow text-black'}`}>
           {tier.badge?.toUpperCase()}
         </div>
       )}

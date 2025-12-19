@@ -1,13 +1,106 @@
 /* Tailwind entry + minimal fallbacks
    This file is processed by PostCSS/Tailwind in dev and production. It replaces the CDN usage.
-*/
+ */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /* Preserve minimal global styles (keep in sync with index.html custom <style> where needed) */
 html, body {
   margin: 0;
   padding: 0;
+}
+
+@layer components {
+  /* Soft glass panels with a neon accent */
+  .glass-panel {
+    background-color: rgba(15,23,42,0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 1rem;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+    position: relative;
+  }
+
+  .neon-badge {
+    @apply inline-block px-4 py-1 text-xs font-bold rounded-full text-white uppercase tracking-wider;
+    background: linear-gradient(90deg,#7c3aed,#a78bfa);
+    box-shadow: 0 10px 30px rgba(124,58,237,0.18), 0 0 18px rgba(124,58,237,0.12) inset;
+  }
+
+  .neon-cta {
+    border-radius: 1rem;
+    font-weight: 700;
+    background: linear-gradient(90deg,#7c3aed,#9f7aea);
+    box-shadow: 0 12px 40px rgba(124,58,237,0.18);
+    transition: filter .18s ease, transform .12s ease;
+  }
+  .neon-cta:hover { filter: brightness(.98) saturate(1.05); transform: translateY(-3px); }
+
+  .neon-heading {
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-image: linear-gradient(180deg,#f59e0b,#fb7185);
+    @apply font-bold;
+  }
+
+  /* Neon yellow text utility */
+  .neon-yellow-text {
+    color: #ffd54a;
+    text-shadow: 0 6px 20px rgba(255,213,74,0.06), 0 2px 8px rgba(255,213,74,0.04);
+  }
+
+  /* Purple badge variant */
+  .purple-badge {
+    @apply inline-block px-4 py-1 text-xs font-bold rounded-full text-white uppercase tracking-wider;
+    background: linear-gradient(90deg,#6d28d9,#8b5cf6);
+    box-shadow: 0 8px 30px rgba(139,92,246,0.12), 0 0 28px rgba(139,92,246,0.08) inset;
+  }
+
+  /* Author portrait ring */
+  .author-ring {
+    border-radius: 9999px;
+    padding: 6px;
+    background: linear-gradient(180deg,#fef3c7,#fde68a);
+    box-shadow: 0 12px 30px rgba(250,204,21,0.08);
+  }
+
+  /* Excerpt read CTA */
+  .excerpt-cta {
+    @apply inline-flex items-center gap-3 px-4 py-2 rounded-full text-sm font-bold text-[#ffd54a];
+    background: linear-gradient(90deg,#6d28d9,#9f7aea);
+    box-shadow: 0 12px 40px rgba(127,63,249,0.12);
+  }
+
+  /* small label accent (Exclusive Preview) */
+  .small-label {
+    @apply inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-[0.3em];
+    background: rgba(255, 214, 74, 0.06);
+    color: #ffd54a;
+    border: 1px solid rgba(255,214,74,0.08);
+  }
+
+  /* Footer tweaks */
+  .site-footer {
+    background: linear-gradient(180deg,#020617,#000000);
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .footer-logo { height: 36px; }
+
+  /* Subtle accent glow helper */
+  .accent-glow { position: relative; }
+  .accent-glow::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 30% 30%, rgba(124,58,237,0.22), rgba(124,58,237,0.04) 35%, rgba(124,58,237,0) 60%);
+    filter: blur(12px);
+    pointer-events: none;
+    z-index: 0;
+  }
 }
