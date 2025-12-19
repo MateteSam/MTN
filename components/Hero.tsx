@@ -30,7 +30,7 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
           <source
             media="(min-width: 768px)"
             type="image/png"
-            srcSet={`/banner@3x.png?v=f20e6d2 5760w, /banner@2x.png?v=f20e6d2 3840w, /banner.png?v=f20e6d2 3099w`}
+            srcSet={`/banner@3x.png?v=5261a24 5760w, /banner@2x.png?v=5261a24 3840w, /banner.png?v=5261a24 3099w`}
             sizes="100vw"
           />
 
@@ -38,18 +38,18 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
           <source
             media="(max-width: 767px)"
             type="image/avif"
-            srcSet={`/mobile.avif?v=f20e6d2 1x, /mobile@2x.avif?v=f20e6d2 2x, /mobile@3x.avif?v=f20e6d2 3x`}
+            srcSet={`/mobile.avif?v=5261a24 1x, /mobile@2x.avif?v=5261a24 2x, /mobile@3x.avif?v=5261a24 3x`}
           />
           <source
             media="(max-width: 767px)"
             type="image/webp"
-            srcSet={`/mobile.webp?v=f20e6d2 1x, /mobile@2x.webp?v=f20e6d2 2x, /mobile@3x.webp?v=f20e6d2 3x`}
+            srcSet={`/mobile.webp?v=5261a24 1x, /mobile@2x.webp?v=5261a24 2x, /mobile@3x.webp?v=5261a24 3x`}
           />
 
           <img
             ref={bannerRef}
             onLoad={onBannerLoad}
-            src="/banner.png?v=f20e6d2"
+            src="/banner.png?v=5261a24"
             alt="300 Million Connections Banner"
             loading="eager"
             decoding="async"
