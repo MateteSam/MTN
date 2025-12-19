@@ -17,12 +17,14 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
         <picture>
           {/* Future: add smaller banner variant with <source media="(max-width: 640px)" srcSet="/banner-sm.png" /> */}
           <img
-            src="/banner.png"
+            src="/banner.png?v=c7d8d92"
             alt="300 Million Connections Banner"
             loading="lazy"
             decoding="async"
+            fetchPriority="high"
             width={1920}
             height={1080}
+            sizes="100vw"
             className="w-full h-auto max-h-[50vh] sm:max-h-[60vh] md:max-h-[70vh] object-contain"
           />
         </picture>
