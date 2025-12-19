@@ -75,24 +75,24 @@ const Book3D: React.FC = () => {
       </div>
 
       {/* BODY / INNER PAGE */}
-      <div className="absolute inset-0 bg-[#fdfbf7] rounded-r-sm z-10 flex flex-col justify-center items-center text-center px-6 py-12 border-l border-slate-300">
+      <div className="absolute inset-0 bg-[#fdfbf7] rounded-r-sm z-10 flex flex-col justify-center items-center text-center px-5 py-10 border-l border-slate-300">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] opacity-50 pointer-events-none" />
         <div className="absolute top-0 left-0 bottom-0 w-16 bg-gradient-to-r from-black/15 to-transparent pointer-events-none z-20" />
 
-        <div className="relative z-30 flex flex-col items-center gap-6 transform translate-x-2">
-          <div className="bg-mtn-yellow/20 p-4 rounded-full mb-2">
+        <div className="relative z-30 flex flex-col items-center gap-4 transform translate-x-1">
+          <div className="bg-mtn-yellow/20 p-3 rounded-full mb-1">
             <span className="text-3xl filter drop-shadow-md">🚀</span>
           </div>
 
-          <h3 className="text-3xl md:text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-b from-mtn-yellow to-orange-600 tracking-tighter drop-shadow-sm leading-[1.05]">
+          <h3 className="text-4xl md:text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-b from-mtn-yellow to-orange-600 tracking-tighter drop-shadow-sm leading-[1.02]">
             PRE-ORDER<br />TODAY!
           </h3>
 
-          <h4 className="mt-3 text-2xl md:text-3xl font-display font-extrabold uppercase tracking-wide text-slate-900 drop-shadow-sm leading-tight whitespace-normal break-words">
+          <h4 className="mt-2 text-2xl md:text-3xl font-display font-extrabold uppercase tracking-wide text-slate-900 drop-shadow-sm leading-tight whitespace-normal break-words">
             PLACE YOUR ORDER TODAY
           </h4>
 
-          <p className="text-slate-600 text-sm md:text-sm font-medium max-w-[260px] leading-relaxed mt-2">
+          <p className="text-slate-600 text-sm md:text-sm font-medium max-w-[280px] leading-relaxed mt-1">
             Be the first to read the untold story of Africa's digital revolution.
           </p>
 
@@ -102,9 +102,10 @@ const Book3D: React.FC = () => {
               e.preventDefault();
               const pricing = document.getElementById('pricing'); if (pricing) { pricing.scrollIntoView({ behavior: 'smooth' }); }
             }}
-            className="mt-4 transform -skew-x-6 hover:skew-x-0 hover:scale-105 transition-all duration-300"
+            aria-label="Pre-order now - scroll to pricing"
+            className="mt-3 transform -skew-x-6 hover:skew-x-0 hover:scale-105 transition-all duration-300 focus-visible:focus-ring"
           >
-            <span className="inline-block px-7 md:px-8 py-3 bg-mtn-yellow text-black text-sm md:text-base font-bold uppercase tracking-[0.12em] shadow-lg rounded-md transform skew-x-6 hover:skew-x-0">
+            <span className="btn-primary inline-block px-7 md:px-8 py-3 text-sm md:text-base font-bold uppercase tracking-[0.12em] shadow-lg rounded-md transform skew-x-6 hover:skew-x-0">
               Pre-Order Now
             </span>
           </button>

@@ -3,10 +3,10 @@ import { Mail } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="site-footer text-slate-500 py-16">
+    <footer className="site-footer text-slate-500 py-12">
       <div className="container mx-auto px-6">
         
-        <div className="grid md:grid-cols-3 gap-12 mb-16 items-center">
+        <div className="grid md:grid-cols-3 gap-8 mb-12 items-center">
           
           {/* Brand */}
           <div className="flex items-center gap-4">
