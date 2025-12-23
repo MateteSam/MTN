@@ -19,8 +19,8 @@ const Book3D: React.FC = () => {
         className="w-full h-full object-cover"
         src="/3D.mp4"
         muted
-        autoPlay
-        loop
+        preload="none"
+        poster="/book%20cover.png"
         playsInline
         onError={() => setVideoFailed(true)}
       />

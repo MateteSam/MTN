@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef, useState, Suspense } from 'react';
 import { ArrowRight, Wifi, ChevronRight } from 'lucide-react';
-import Book3D from './Book3D';
+const Book3D = React.lazy(() => import('./Book3D'));
 import { HERO_CONTENT } from '../constants';
 
 interface HeroProps {
@@ -8,7 +8,22 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
-  
+  const [load3D, setLoad3D] = useState(false);
+  const bookRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!bookRef.current) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          setLoad3D(true);
+          io.disconnect();
+        }
+      });
+    }, { rootMargin: '200px' });
+    io.observe(bookRef.current);
+    return () => io.disconnect();
+  }, []);
 
   return (
     <section className="relative min-h-screen flex flex-col items-center pt-0 pb-20 overflow-hidden bg-[#020617]">
@@ -16,14 +31,19 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
       {/* Banner at the very top, single image fitting perfectly */}
       <div className="w-full relative flex items-center justify-center rounded-none overflow-hidden border-b border-white/10 shadow-2xl bg-black">
         <picture>
-          {/* Desktop: Force highest res PNG to eliminate any compression blur */}
+          {/* Desktop: prefer AVIF for best compression and quality where supported */}
+          <source
+            media="(min-width: 768px)"
+            type="image/avif"
+            srcSet={`/banner@3x.avif?v=5261a24 5760w, /banner@2x.avif?v=5261a24 3840w, /banner.avif?v=5261a24 3099w`}
+          />
           <source
             media="(min-width: 768px)"
             type="image/png"
-            srcSet={`/banner@3x.png?v=5261a24`}
+            srcSet={`/banner@3x.png?v=5261a24 5760w, /banner@2x.png?v=5261a24 3840w, /banner.png?v=5261a24 3099w`}
           />
 
-          {/* Mobile: prefer the provided mobile image (AVIF/WebP for better size) */}
+          {/* Mobile: prefer AVIF when available, fallback to WebP */}
           <source
             media="(max-width: 767px)"
             type="image/avif"
@@ -61,10 +81,12 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
 
           {/* LEFT COLUMN: 3D Book */}
           <div className="flex flex-col items-center lg:items-end order-1 lg:order-1">
-            <div className="relative w-72 h-[480px] md:w-96 md:h-[560px] flex items-center justify-center transform hover:scale-105 transition-transform duration-700 mr-[-12px] lg:mr-[-28px]">
+            <div ref={bookRef} className="relative w-72 h-[480px] md:w-96 md:h-[560px] flex items-center justify-center transform hover:scale-105 transition-transform duration-700 mr-[-12px] lg:mr-[-28px]">
               {/* Spotlight effect behind book */}
               <div className="absolute inset-0 bg-gradient-to-tr from-mtn-yellow/20 to-transparent blur-2xl rounded-full opacity-0 hover:opacity-100 transition-opacity duration-1000"></div>
-              <Book3D />
+              <Suspense fallback={<div className="w-full h-full bg-slate-900 rounded-md" />}>
+                {load3D ? <Book3D /> : <div className="w-full h-full" />}
+              </Suspense>
             </div>
           </div>
 

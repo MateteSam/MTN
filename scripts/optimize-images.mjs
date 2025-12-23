@@ -58,11 +58,12 @@ async function processImage(srcPath, baseName, sizes) {
     // Desktop banner
     await processImage('public/banner.png', 'banner');
 
-    // Mobile banner - use provided mobile.png if present
+    // Mobile banner - use provided mobile.png if present, otherwise create mobile variants from banner.png
     if (fs.existsSync('public/mobile.png')) {
       await processImage('public/mobile.png', 'mobile');
     } else {
-      console.warn('public/mobile.png not found — skipping mobile variant');
+      console.warn('public/mobile.png not found — generating mobile variants from banner.png');
+      await processImage('public/banner.png', 'mobile');
     }
 
     console.log('Image optimization finished');
