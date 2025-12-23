@@ -11,23 +11,25 @@
     <meta property="og:url" content="https://300millionconnections.com">
     <meta property="og:title" content="300 Million Connections: MTN & The African Tech Revolution">
     <meta property="og:description" content="300 Million Connections is the definitive story of how Africa rewired its destiny through innovation, courage, and connectivity.">
-    <meta property="og:image" content="https://300millionconnections.com/book cover.png">
+    <meta property="og:image" content="https://300millionconnections.com/book%20cover.png">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://300millionconnections.com">
     <meta property="twitter:title" content="300 Million Connections: MTN & The African Tech Revolution">
     <meta property="twitter:description" content="300 Million Connections is the definitive story of how Africa rewired its destiny through innovation, courage, and connectivity.">
-    <meta property="twitter:image" content="https://300millionconnections.com/book cover.png">
+    <meta property="twitter:image" content="https://300millionconnections.com/book%20cover.png">
     
     <!-- LinkedIn -->
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-        <!-- Tailwind will be built via PostCSS in dev/production (see tailwind.config.cjs).
-          A CDN fallback is included here so the UI works immediately until you install
-          Tailwind dependencies locally (`npm install -D tailwindcss postcss autoprefixer`). -->
-        <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Tailwind is built and included via /index.css (PostCSS/Tailwind) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Preload LCP image (AVIF preferred) with responsive srcset for modern browsers -->
+    <link rel="preload" as="image" href="/banner.avif?v=c7d8d92" type="image/avif"
+          imagesrcset="/banner@3x.avif?v=c7d8d92 5760w, /banner@2x.avif?v=c7d8d92 3840w, /banner.avif?v=c7d8d92 3099w"
+          imagesizes="100vw">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
     <!-- Preload banner to avoid stale cached image and ensure crisp display (cache-busted) -->
@@ -175,16 +177,7 @@
         } catch (e) {}
       })();
     </script>
-  <script type="importmap">
-{
-  "imports": {
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.560.0"
-  }
-}
-</script>
+<!-- Import map removed for production builds: dependencies are bundled at build time -->
 <link rel="icon" href="/logo.png">
 <link rel="stylesheet" href="/index.css">
 </head>

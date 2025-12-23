@@ -42,9 +42,27 @@ let PUBLIC_API_ORIGIN = process.env.PUBLIC_URL_API || process.env.PUBLIC_URL || 
   }
 })();
 
+import zlib from 'zlib';
+
 function sendHtml(res, html, status = 200) {
   res.writeHead(status, { 'Content-Type': 'text/html; charset=utf-8' });
   res.end(html);
+}
+
+async function sendJson(req, res, obj, status = 200) {
+  const body = JSON.stringify(obj);
+  try {
+    const accept = (req.headers['accept-encoding'] || '');
+    if (accept.includes('gzip')) {
+      const gz = zlib.gzipSync(body);
+      res.writeHead(status, { 'Content-Type': 'application/json', 'Content-Encoding': 'gzip' });
+      return res.end(gz);
+    }
+  } catch (err) {
+    // fall back to uncompressed
+  }
+  res.writeHead(status, { 'Content-Type': 'application/json' });
+  res.end(body);
 }
 
 function buildPayfastForm({ amount = '0.00', item_name = 'Test Item', merchant_id = '10000100', merchant_key = '46f0cd694581a' } = {}) {
@@ -235,11 +253,9 @@ const server = http.createServer(async (req, res) => {
       try {
         const orders = await import('../lib/orders.js');
         const list = await orders.readOrders ? await orders.readOrders() : [];
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        return res.end(JSON.stringify(list, null, 2));
+        return sendJson(req, res, list, 200);
       } catch (err) {
-        res.writeHead(500, { 'Content-Type': 'application/json' });
-        return res.end(JSON.stringify({ error: 'Could not read orders' }));
+        return sendJson(req, res, { error: 'Could not read orders' }, 500);
       }
     }
 
