@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import AboutSection from './components/AboutSection';
-import ExcerptSection from './components/ExcerptSection';
-import BetweenAuthorPreview from './components/BetweenAuthorPreview';
-import PricingSection from './components/PricingSection';
-import Footer from './components/Footer';
+const AboutSection = React.lazy(() => import('./components/AboutSection'));
+const ExcerptSection = React.lazy(() => import('./components/ExcerptSection'));
+const BetweenAuthorPreview = React.lazy(() => import('./components/BetweenAuthorPreview'));
+const PricingSection = React.lazy(() => import('./components/PricingSection'));
+const Footer = React.lazy(() => import('./components/Footer'));
 import ExcerptPage from './components/ExcerptPage';
 import AuthorPage from './components/AuthorPage';
 
@@ -30,12 +30,14 @@ function App() {
     <div className="bg-slate-950 min-h-screen selection:bg-mtn-yellow selection:text-black pt-20 md:pt-24 lg:pt-28">
       <Navbar />
       <Hero onReadExcerpt={() => setView('excerpt')} />
-      <AboutSection />
-      {/* Smart placement: image between Author and Exclusive Preview */}
-      <BetweenAuthorPreview />
-      <ExcerptSection onReadExcerpt={() => setView('excerpt')} />
-      <PricingSection />
-      <Footer />
+      <Suspense fallback={<div className="min-h-[200px]" />}>
+        <AboutSection />
+        {/* Smart placement: image between Author and Exclusive Preview */}
+        <BetweenAuthorPreview />
+        <ExcerptSection onReadExcerpt={() => setView('excerpt')} />
+        <PricingSection />
+        <Footer />
+      </Suspense>
     </div>
   );
 }

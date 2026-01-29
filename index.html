@@ -26,14 +26,10 @@
         <!-- Tailwind is built and included via /index.css (PostCSS/Tailwind) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Preload LCP image (AVIF preferred) with responsive srcset for modern browsers -->
-    <link rel="preload" as="image" href="/banner.avif?v=c7d8d92" type="image/avif"
-          imagesrcset="/banner@3x.avif?v=c7d8d92 5760w, /banner@2x.avif?v=c7d8d92 3840w, /banner.avif?v=c7d8d92 3099w"
-          imagesizes="100vw">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Preload banner to avoid stale cached image and ensure crisp display (cache-busted) -->
-    <link rel="preload" href="/banner.png?v=c7d8d92" as="image">
+    <!-- Preload video poster for fast LCP -->
+    <link rel="preload" href="/envato-labs-image-edit (19).png" as="image">
     <!-- Tailwind theme extensions moved to tailwind.config.cjs -->
     <style>
       :root {

@@ -30,44 +30,16 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
 
       {/* Banner at the very top, single image fitting perfectly */}
       <div className="w-full relative flex items-center justify-center rounded-none overflow-hidden border-b border-white/10 shadow-2xl bg-black">
-        <picture>
-          {/* Desktop: prefer AVIF for best compression and quality where supported */}
-          <source
-            media="(min-width: 768px)"
-            type="image/avif"
-            srcSet={`/banner@3x.avif?v=5261a24 5760w, /banner@2x.avif?v=5261a24 3840w, /banner.avif?v=5261a24 3099w`}
-          />
-          <source
-            media="(min-width: 768px)"
-            type="image/png"
-            srcSet={`/banner@3x.png?v=5261a24 5760w, /banner@2x.png?v=5261a24 3840w, /banner.png?v=5261a24 3099w`}
-          />
-
-          {/* Mobile: prefer AVIF when available, fallback to WebP */}
-          <source
-            media="(max-width: 767px)"
-            type="image/avif"
-            srcSet={`/mobile.avif?v=5261a24 1x, /mobile@2x.avif?v=5261a24 2x, /mobile@3x.avif?v=5261a24 3x`}
-          />
-          <source
-            media="(max-width: 767px)"
-            type="image/webp"
-            srcSet={`/mobile.webp?v=5261a24 1x, /mobile@2x.webp?v=5261a24 2x, /mobile@3x.webp?v=5261a24 3x`}
-          />
-
-          <img
-            src="/banner@3x.png?v=5261a24"
-            alt="300 Million Connections Banner"
-            loading="eager"
-            decoding="async"
-            fetchPriority="high"
-            width={5760}
-            height={2088}
-            className="w-full h-auto object-contain"
-          />
-
-          {/* debug overlay removed for production */}
-        </picture>
+        <video
+          src="/envato_video_gen_Jan_29_2026_9_46_09.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="/envato-labs-image-edit (19).png"
+          preload="metadata"
+          className="w-full h-auto object-cover"
+        />
         {/* Subtle gradient fader to blend banner into hero and improve readability; stronger on small screens */}
         <div
           aria-hidden="true"
