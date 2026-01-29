@@ -36,7 +36,7 @@ const Hero: React.FC<HeroProps> = ({ onReadExcerpt }) => {
           loop
           muted
           playsInline
-          poster="/envato-labs-image-edit (19).png"
+          poster="/video-poster.png"
           preload="metadata"
           className="w-full h-auto object-cover"
         />

@@ -1,184 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>300 Million Connections - Presale</title>
-    <meta name="description" content="300 Million Connections is the definitive story of how Africa rewired its destiny through innovation, courage, and connectivity. Pre-Order the book by Dr. Charles Wirsuiy.">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://300millionconnections.com">
-    <meta property="og:title" content="300 Million Connections: MTN & The African Tech Revolution">
-    <meta property="og:description" content="300 Million Connections is the definitive story of how Africa rewired its destiny through innovation, courage, and connectivity.">
-    <meta property="og:image" content="https://300millionconnections.com/book%20cover.png">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://300millionconnections.com">
-    <meta property="twitter:title" content="300 Million Connections: MTN & The African Tech Revolution">
-    <meta property="twitter:description" content="300 Million Connections is the definitive story of how Africa rewired its destiny through innovation, courage, and connectivity.">
-    <meta property="twitter:image" content="https://300millionconnections.com/book%20cover.png">
-    
-    <!-- LinkedIn -->
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-        <!-- Tailwind is built and included via /index.css (PostCSS/Tailwind) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Preload video poster for fast LCP -->
-    <link rel="preload" href="/envato-labs-image-edit (19).png" as="image">
-    <!-- Tailwind theme extensions moved to tailwind.config.cjs -->
-    <style>
-      :root {
-        --bg: #07142a;
-        --text: #f8fafc;
-        --panel-bg: rgba(15, 23, 42, 0.6);
-        --panel-border: rgba(255,255,255,0.05);
-        --muted: #94a3b8;
-        --mtn-yellow: #ffcc00;
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>300 Million Connections - Presale</title>
+  <meta name="description"
+    content="300 Million Connections is the definitive story of how Africa rewired its destiny through innovation, courage, and connectivity. Pre-Order the book by Dr. Charles Wirsuiy.">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://300millionconnections.com">
+  <meta property="og:title" content="300 Million Connections: MTN & The African Tech Revolution">
+  <meta property="og:description"
+    content="300 Million Connections is the definitive story of how Africa rewired its destiny through innovation, courage, and connectivity.">
+  <meta property="og:image" content="https://300millionconnections.com/book%20cover.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://300millionconnections.com">
+  <meta property="twitter:title" content="300 Million Connections: MTN & The African Tech Revolution">
+  <meta property="twitter:description"
+    content="300 Million Connections is the definitive story of how Africa rewired its destiny through innovation, courage, and connectivity.">
+  <meta property="twitter:image" content="https://300millionconnections.com/book%20cover.png">
+
+  <!-- LinkedIn -->
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <!-- Tailwind is built and included via /index.css (PostCSS/Tailwind) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap"
+    rel="stylesheet">
+  <!-- Preload video poster for fast LCP -->
+  <link rel="preload" href="/video-poster.png" as="image">
+  <!-- Tailwind theme extensions moved to tailwind.config.cjs -->
+  <style>
+    :root {
+      --bg: #07142a;
+      --text: #f8fafc;
+      --panel-bg: rgba(15, 23, 42, 0.6);
+      --panel-border: rgba(255, 255, 255, 0.05);
+      --muted: #94a3b8;
+      --mtn-yellow: #ffcc00;
+    }
+
+    [data-theme='light'] {
+      --bg: #ffffff;
+      --text: #0f172a;
+      --panel-bg: rgba(255, 255, 255, 0.85);
+      --panel-border: rgba(15, 23, 42, 0.06);
+      --muted: #1f2a33;
+      /* darker muted for paragraph/text contrast */
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      transition: background-color 250ms ease, color 250ms ease;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+
+    .glass-panel {
+      background: var(--panel-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--panel-border);
+    }
+
+    /* 3D Transform Utilities */
+    .preserve-3d {
+      transform-style: preserve-3d;
+    }
+
+    .backface-hidden {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    /* Light-theme overrides for commonly used utility classes */
+    [data-theme='light'] .text-white {
+      color: var(--text) !important;
+    }
+
+    /* Make paragraph and descriptive text darker for better readability in light mode */
+    [data-theme='light'] p,
+    [data-theme='light'] .text-slate-400,
+    [data-theme='light'] .text-slate-500,
+    [data-theme='light'] .text-slate-200,
+    [data-theme='light'] .text-slate-300 {
+      color: var(--muted) !important;
+    }
+
+    [data-theme='light'] .bg-slate-900,
+    [data-theme='light'] .bg-black {
+      background-color: transparent !important;
+    }
+
+    /* Make common dark panels and sections use a light-friendly background */
+    [data-theme='light'] .glass-panel,
+    [data-theme='light'] nav,
+    [data-theme='light'] section {
+      background-color: rgba(255, 255, 255, 0.6) !important;
+    }
+
+    /* Ensure brand yellow (pre-order buttons) remains vivid in both themes */
+    .bg-mtn-yellow {
+      background-color: var(--mtn-yellow) !important;
+    }
+
+    .bg-mtn-yellow,
+    .bg-mtn-yellow * {
+      color: #000 !important;
+    }
+
+    /* Improve contrast for prominent headings and display type in light mode */
+    [data-theme='light'] h1,
+    [data-theme='light'] h2,
+    [data-theme='light'] .font-display,
+    [data-theme='light'] .font-bold {
+      color: var(--text) !important;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.06) !important;
+    }
+
+    /* Make links and emphasized text clearer */
+    [data-theme='light'] a {
+      color: #0b1220;
+    }
+
+    /* Prevent any light-theme overrides from affecting the pricing section and its cards */
+    [data-theme='light'] #pricing,
+    [data-theme='light'] #pricing * {
+      background-color: unset !important;
+      color: unset !important;
+      box-shadow: unset !important;
+      border-color: unset !important;
+    }
+
+    /* Force the pricing section to remain in its original dark style (always) */
+    #pricing {
+      background-color: #0f172a !important;
+    }
+
+    #pricing h2,
+    #pricing .text-white {
+      color: #ffffff !important;
+    }
+
+    #pricing p,
+    #pricing .text-slate-400,
+    #pricing .text-slate-300 {
+      color: #94a3b8 !important;
+    }
+
+    #pricing .glass-panel {
+      background-color: rgba(15, 23, 42, 0.6) !important;
+      border-color: rgba(255, 255, 255, 0.05) !important;
+    }
+
+    #pricing .bg-mtn-yellow {
+      background-color: var(--mtn-yellow) !important;
+      color: #000 !important;
+    }
+
+    /* Neon outline utility (vivid yellow) */
+    .neon-outline {
+      position: relative;
+    }
+
+    .neon-outline::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: inherit;
+      background: linear-gradient(90deg, rgba(255, 204, 0, 0.22), rgba(255, 204, 0, 0.08));
+      filter: blur(12px);
+      opacity: 0;
+      transition: opacity 220ms ease, transform 420ms cubic-bezier(.2, .9, .2, 1);
+      transform: scale(0.96);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .neon-outline.animate-in::before {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .neon-pulse {
+      animation: neonPulse 2.6s infinite;
+    }
+
+    @keyframes neonPulse {
+      0% {
+        box-shadow: 0 0 0 rgba(255, 204, 0, 0.06);
       }
 
-      [data-theme='light'] {
-        --bg: #ffffff;
-        --text: #0f172a;
-        --panel-bg: rgba(255,255,255,0.85);
-        --panel-border: rgba(15,23,42,0.06);
-        --muted: #1f2a33; /* darker muted for paragraph/text contrast */
+      50% {
+        box-shadow: 0 0 48px rgba(255, 204, 0, 0.16);
       }
 
-      body {
-        background-color: var(--bg);
-        color: var(--text);
-        overflow-x: hidden;
-        transition: background-color 250ms ease, color 250ms ease;
+      100% {
+        box-shadow: 0 0 0 rgba(255, 204, 0, 0.06);
       }
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #0f172a;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #334155;
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #475569;
-      }
-      
-      .glass-panel {
-        background: var(--panel-bg);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid var(--panel-border);
-      }
+    }
 
-      /* 3D Transform Utilities */
-      .preserve-3d {
-        transform-style: preserve-3d;
-      }
-      .backface-hidden {
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-      }
+    [data-theme='light'] .border-white\/10 {
+      border-color: rgba(15, 23, 42, 0.06) !important;
+    }
 
-      /* Light-theme overrides for commonly used utility classes */
-      [data-theme='light'] .text-white { color: var(--text) !important; }
-      /* Make paragraph and descriptive text darker for better readability in light mode */
-      [data-theme='light'] p,
-      [data-theme='light'] .text-slate-400,
-      [data-theme='light'] .text-slate-500,
-      [data-theme='light'] .text-slate-200,
-      [data-theme='light'] .text-slate-300 { color: var(--muted) !important; }
+    [data-theme='light'] .shadow-lg {
+      box-shadow: 0 10px 25px rgba(2, 6, 23, 0.06) !important;
+    }
 
-      [data-theme='light'] .bg-slate-900,
-      [data-theme='light'] .bg-black { background-color: transparent !important; }
-
-      /* Make common dark panels and sections use a light-friendly background */
-      [data-theme='light'] .glass-panel,
-      [data-theme='light'] nav,
-      [data-theme='light'] section { background-color: rgba(255,255,255,0.6) !important; }
-
-      /* Ensure brand yellow (pre-order buttons) remains vivid in both themes */
-      .bg-mtn-yellow { background-color: var(--mtn-yellow) !important; }
-      .bg-mtn-yellow, .bg-mtn-yellow * { color: #000 !important; }
-
-      /* Improve contrast for prominent headings and display type in light mode */
-      [data-theme='light'] h1,
-      [data-theme='light'] h2,
-      [data-theme='light'] .font-display,
-      [data-theme='light'] .font-bold { color: var(--text) !important; text-shadow: 0 2px 10px rgba(0,0,0,0.06) !important; }
-
-      /* Make links and emphasized text clearer */
-      [data-theme='light'] a { color: #0b1220; }
-
-      /* Prevent any light-theme overrides from affecting the pricing section and its cards */
-      [data-theme='light'] #pricing,
-      [data-theme='light'] #pricing * {
-        background-color: unset !important;
-        color: unset !important;
-        box-shadow: unset !important;
-        border-color: unset !important;
-      }
-      /* Force the pricing section to remain in its original dark style (always) */
-      #pricing { background-color: #0f172a !important; }
-      #pricing h2, #pricing .text-white { color: #ffffff !important; }
-      #pricing p, #pricing .text-slate-400, #pricing .text-slate-300 { color: #94a3b8 !important; }
-      #pricing .glass-panel { background-color: rgba(15,23,42,0.6) !important; border-color: rgba(255,255,255,0.05) !important; }
-      #pricing .bg-mtn-yellow { background-color: var(--mtn-yellow) !important; color: #000 !important; }
-      /* Neon outline utility (vivid yellow) */
-      .neon-outline {
-        position: relative;
-      }
-      .neon-outline::before {
-        content: '';
-        position: absolute;
-        inset: -6px;
-        border-radius: inherit;
-        background: linear-gradient(90deg, rgba(255,204,0,0.22), rgba(255,204,0,0.08));
-        filter: blur(12px);
-        opacity: 0;
-        transition: opacity 220ms ease, transform 420ms cubic-bezier(.2,.9,.2,1);
-        transform: scale(0.96);
-        z-index: -1;
-        pointer-events: none;
-      }
-      .neon-outline.animate-in::before { opacity: 1; transform: scale(1); }
-      .neon-pulse { animation: neonPulse 2.6s infinite; }
-      @keyframes neonPulse {
-        0% { box-shadow: 0 0 0 rgba(255,204,0,0.06); }
-        50% { box-shadow: 0 0 48px rgba(255,204,0,0.16); }
-        100% { box-shadow: 0 0 0 rgba(255,204,0,0.06); }
-      }
-
-      [data-theme='light'] .border-white\/10 { border-color: rgba(15,23,42,0.06) !important; }
-      [data-theme='light'] .shadow-lg { box-shadow: 0 10px 25px rgba(2,6,23,0.06) !important; }
-
-      [data-theme='light'] .bg-mtn-yellow { background-color: var(--bg) !important; }
-    </style>
-    <script>
-      (function() {
-        try {
-          var saved = localStorage.getItem('site-theme');
-          if (saved === 'light' || saved === 'dark') {
-            document.documentElement.setAttribute('data-theme', saved);
-            return;
-          }
-          var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-          document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
-        } catch (e) {}
-      })();
-    </script>
-<!-- Import map removed for production builds: dependencies are bundled at build time -->
-<link rel="icon" href="/logo.png">
-<link rel="stylesheet" href="/index.css">
+    [data-theme='light'] .bg-mtn-yellow {
+      background-color: var(--bg) !important;
+    }
+  </style>
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('site-theme');
+        if (saved === 'light' || saved === 'dark') {
+          document.documentElement.setAttribute('data-theme', saved);
+          return;
+        }
+        var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+        document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+      } catch (e) { }
+    })();
+  </script>
+  <!-- Import map removed for production builds: dependencies are bundled at build time -->
+  <link rel="icon" href="/logo.png">
+  <link rel="stylesheet" href="/index.css">
 </head>
-  <body>
-    <div id="root"></div>
+
+<body>
+  <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>
+
 </html>
